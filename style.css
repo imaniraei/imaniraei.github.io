@@ -61,3 +61,110 @@ li { margin-bottom: 17px; }
   body { font-size: 18px; }
   p { text-align: left; }
 }
+
+
+
+
+
+
+.publication {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 35px;
+  margin-bottom: 70px;
+  position: relative;
+}
+
+.pub-img {
+  width: 220px;
+  border-radius: 6px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  margin-top: 8px;
+}
+
+.pub-content h3 {
+  font-size: 28px;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.authors {
+  font-size: 25px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.venue {
+  font-size: 25px;
+  font-style: italic;
+  text-align: left;
+}
+
+.pub-year {
+  position: absolute;
+  right: 0;
+  top: -15px;
+  font-size: 52px;
+  color: #dddddd;
+  font-weight: 300;
+}
+
+.pub-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.pub-buttons button,
+.pub-buttons a {
+  font-size: 18px;
+  padding: 8px 32px;
+  border: 2px solid #222;
+  background: white;
+  color: #111;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pub-buttons button:hover,
+.pub-buttons a:hover {
+  background: #f0f0f0;
+  text-decoration: none;
+}
+
+.hidden-box {
+  display: none;
+  border: 2px dashed #333;
+  padding: 22px;
+  margin-top: 28px;
+  font-size: 21px;
+  line-height: 1.45;
+  text-align: justify;
+}
+
+.bibtex {
+  background: #fff7ff;
+  border: none;
+  color: #b00000;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: monospace;
+}
+
+@media (max-width: 800px) {
+  .publication {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-img {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .pub-year {
+    position: static;
+    font-size: 36px;
+  }
+}
