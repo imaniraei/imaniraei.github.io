@@ -11,6 +11,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
+<script>
+  function toggleBox(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+  
 <body>
   <main class="page">
     <section class="intro">
@@ -86,17 +94,88 @@
       </p>
     </section>
 
-    <section>
-      <h2>Selected Publications</h2>
-      <ul>
-        <li><strong>LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving.</strong> Submitted to <em>Robotics and Autonomous Systems</em>, 2026.</li>
-        <li><strong>SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles.</strong> Submitted to <em>IEEE Transactions on Intelligent Vehicles</em>, 2026.</li>
-        <li><strong>A Motion Parameters Estimating Method Based on Deep Learning for Visual Blurred Object Tracking.</strong> <em>IET Image Processing</em>, 2021.</li>
-        <li><strong>A New Approach to Enhance the Estimation of Motion Blur Parameters in Blurred Images.</strong> 2020.</li>
-        <li><strong>Object Tracking in Blurred Images with Mean Shift and Wavelet Features.</strong> International Conference on Pattern Recognition and Computer Vision, Rome, Italy, 2018.</li>
-        <li><strong>Object Tracking with Occlusion Handling using Mean Shift, Kalman Filter, and Edge Histogram.</strong> IEEE International Conference on Pattern Recognition and Image Analysis, Guilan, Iran, 2015.</li>
-      </ul>
-    </section>
+<section>
+  <h2>Selected Publications</h2>
+
+  <div class="publication">
+    <img class="pub-img" src="scope.png" alt="SCOPE project overview">
+
+    <div class="pub-content">
+      <div class="pub-year">2026</div>
+
+      <h3>SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles</h3>
+
+      <p class="authors">
+        <strong>Iman Iraei</strong>, M. Omair Ahmad, and M. N. S. Swamy
+      </p>
+
+      <p class="venue">
+        Submitted to <em>IEEE Transactions on Intelligent Vehicles</em>, 2026
+      </p>
+
+      <div class="pub-buttons">
+        <button onclick="toggleBox('scope-abs')">ABS</button>
+        <button onclick="toggleBox('scope-bib')">BIB</button>
+        <a href="#" target="_blank">PDF</a>
+        <a href="https://github.com/imaniraei" target="_blank">CODE</a>
+        <a href="https://imaniraei.github.io/SCOPE" target="_blank">WEBSITE</a>
+      </div>
+
+      <div id="scope-abs" class="hidden-box">
+        Reliable object detection is a critical component of perception systems in autonomous driving.
+        This paper presents SCOPE, an efficient real-time object detection framework that integrates
+        spatial-channel attention refinement and adaptive feature fusion to improve detection accuracy
+        while reducing computational complexity and inference latency.
+      </div>
+
+      <pre id="scope-bib" class="hidden-box bibtex">@article{iraei2026scope,
+  title={SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles},
+  author={Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
+  journal={Submitted to IEEE Transactions on Intelligent Vehicles},
+  year={2026}
+}</pre>
+    </div>
+  </div>
+
+  <div class="publication">
+    <img class="pub-img" src="lahn-driveclip.png" alt="LAHN-DriveCLIP project overview">
+
+    <div class="pub-content">
+      <div class="pub-year">2026</div>
+
+      <h3>LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving</h3>
+
+      <p class="authors">
+        <strong>Iman Iraei</strong>, M. Omair Ahmad, and M. N. S. Swamy
+      </p>
+
+      <p class="venue">
+        Submitted to <em>Robotics and Autonomous Systems</em>, 2026
+      </p>
+
+      <div class="pub-buttons">
+        <button onclick="toggleBox('lahn-abs')">ABS</button>
+        <button onclick="toggleBox('lahn-bib')">BIB</button>
+        <a href="#" target="_blank">PDF</a>
+        <a href="https://github.com/imaniraei" target="_blank">CODE</a>
+        <a href="https://imaniraei.github.io/LAHN-DriveCLIP" target="_blank">WEBSITE</a>
+      </div>
+
+      <div id="lahn-abs" class="hidden-box">
+        LAHN-DriveCLIP is a localization-aware vision-language framework for autonomous driving.
+        It adapts CLIP using LoRA and CAM-guided hard negative mining to improve weakly supervised
+        localization and scene understanding in driving environments.
+      </div>
+
+      <pre id="lahn-bib" class="hidden-box bibtex">@article{iraei2026lahndriveclip,
+  title={LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving},
+  author={Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
+  journal={Submitted to Robotics and Autonomous Systems},
+  year={2026}
+}</pre>
+    </div>
+  </div>
+</section>
 
     <section>
       <h2>Research Projects</h2>
