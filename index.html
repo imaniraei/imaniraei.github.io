@@ -169,7 +169,20 @@ computational efficiency.</div>
         <a href="https://github.com/imaniraei" target="_blank">CODE</a>
         <a href="https://imaniraei.github.io/LAHN-DriveCLIP" target="_blank">WEBSITE</a>
       </div>
-      <div id="lahn-abs" class="hidden-box">LAHN-DriveCLIP is a localization-aware vision-language framework based on CLIP adaptation and CAM-guided hard negative mining for autonomous driving scene understanding.</div>
+      <div id="lahn-abs" class="hidden-box">Vision–language models such as CLIP have demonstrated strong zero-shot capabilities by aligning visual and textual representations,
+yet adapting these models for object localization in autonomous driving remains challenging due to limited annotated data and the
+lack of dense pixel-level supervision. In this paper, we propose LAHN-DriveCLIP, a localization-aware CLIP adaptation framework
+designed for weakly supervised vision–language localization in complex driving environments. Our approach leverages low-rank
+adaptation (LoRA) to efficiently fine-tune CLIP using annotated image–text pairs while keeping the pretrained vision and text
+encoders frozen. Localization is guided through class activation maps (CAMs) rather than direct bounding-box regression, where
+coarse bounding-box annotations are converted into Gaussian spatial targets and aligned with CAM responses during training.
+To further enhance discriminative localization, we introduce CAM-guided hard negative mining, which emphasizes challenging
+negative image–text pairs based on spatial activation inconsistencies. We train LAHN-DriveCLIP on the Talk2Car dataset using the
+standard training–evaluation split and further evaluate its generalization across multiple autonomous driving datasets. Experimental
+results demonstrate that the proposed method consistently improves both object localization and cross-modal retrieval accuracy
+compared with CLIP-based baselines, while preserving interpretable activation maps and strong vision–language alignment. These
+findings highlight the effectiveness of parameter-efficient, localization-aware adaptation for autonomous driving scenarios with weak,
+bounding box–level supervision.</div>
       <pre id="lahn-bib" class="hidden-box bibtex">@article{iraei2026lahndriveclip,
   title={LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving},
   author={Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
@@ -192,7 +205,21 @@ computational efficiency.</div>
         <a href="#" target="_blank">PDF</a>
         <a href="#" target="_blank">WEBSITE</a>
       </div>
-      <div id="tracking2021-abs" class="hidden-box">This work investigates visual object tracking under motion blur, occlusion, background clutter, illumination variation, and scale changes.</div>
+      <div id="tracking2021-abs" class="hidden-box">Tracking the specific object in the blurred scenes is one of the challenging problems in
+computer vision and image processing. The accuracy and performance of trackers within
+the blur frames usually demonstrate a severe decrease. Accordingly, this problem needs to
+be corrected for better tracking results. Thus, this study seeks to present the best solution.
+To this end, a novel deep learning approach is proposed for object tracking in the presence
+of motion blur and fast motion. The hidden information in the blurring kernel is useful
+for tracking a specific blurred object through a series of consecutive frames. In this study,
+this matter is evaluated from a new perspective to solve the problems of blurred object
+tracking and objects with highly fast motions using a convolutional neural network (CNN)
+and a particle filter. Therefore, the proposed framework has two phases. First, the kernel
+leading to blurring is estimated by CNN, and then by a particle filter and the probability
+distribution of motion information that has been achieved by the kernel estimation the
+object is tracked. The results demonstrate that the suggested method can enhance the
+accuracy of tracking compared with the state-of-the-art, especially when the amount of
+blur is high.</div>
       <pre id="tracking2021-bib" class="hidden-box bibtex">@article{iraei2021motion,
   title={A motion parameters estimating method based on deep learning for visual blurred object tracking},
   author={Iraei, Iman and Faez, Karim},
