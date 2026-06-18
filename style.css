@@ -153,22 +153,10 @@ li { margin-bottom: 17px; }
   font-family: monospace;
 }
 
-@media (max-width: 800px) {
-  .publication {
-    grid-template-columns: 1fr;
-  }
 
-  .pub-img {
-    width: 100%;
-    max-width: 260px;
-  }
 
-  .pub-year {
-    position: static;
-    font-size: 36px;
-  }
 
-  .hidden-box {
+.hidden-box {
   display: none;
   border: 2px dashed #333;
   padding: 22px;
@@ -191,5 +179,22 @@ li { margin-bottom: 17px; }
   font-family: monospace;
   max-width: 100%;
 }
+
+
+
+@media (max-width: 800px) {
+  .publication {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-img {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .pub-year {
+    position: static;
+    font-size: 36px;
+  }
 
 }
