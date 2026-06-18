@@ -134,27 +134,12 @@ li { margin-bottom: 17px; }
   text-decoration: none;
 }
 
-.hidden-box {
-  display: none;
-  border: 2px dashed #333;
-  padding: 22px;
-  margin-top: 28px;
-  font-size: 21px;
-  line-height: 1.45;
-  text-align: justify;
+
+
+.pub-content {
+  min-width: 0;
+  overflow: hidden;
 }
-
-.bibtex {
-  background: #fff7ff;
-  border: none;
-  color: #b00000;
-  overflow-x: auto;
-  white-space: pre;
-  font-family: monospace;
-}
-
-
-
 
 .hidden-box {
   display: none;
@@ -178,11 +163,9 @@ li { margin-bottom: 17px; }
   font-family: monospace;
   font-size: 18px;
   line-height: 1.45;
-
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-
   white-space: pre;
   overflow-x: auto;
   overflow-y: hidden;
