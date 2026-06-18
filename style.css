@@ -165,19 +165,27 @@ li { margin-bottom: 17px; }
   line-height: 1.45;
   text-align: justify;
   max-width: 100%;
-  overflow-x: auto;
   box-sizing: border-box;
 }
 
 .bibtex {
+  display: none;
   background: #fff7ff;
   color: #b00000;
   border: none;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  padding: 28px;
+  margin-top: 28px;
   font-family: monospace;
+  font-size: 18px;
+  line-height: 1.45;
+
+  width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
+
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 
