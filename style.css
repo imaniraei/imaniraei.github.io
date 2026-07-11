@@ -8,14 +8,9 @@ html {
   --page-bg: #f5f5f5;
   --content-bg: #ffffff;
   --text: #2f2f2f;
-
-  /* Pink/purple is only for links and hover effects in light mode */
   --accent: #c229c5;
-  --link: var(--accent);
-
-  /* Section headings stay dark blue in light mode */
   --heading: #173b78;
-
+  --link: var(--accent);
   --border: #dedede;
   --header-bg: rgba(255, 255, 255, 0.96);
   --shadow: rgba(0, 0, 0, 0.08);
@@ -41,14 +36,9 @@ body.dark-mode {
   --page-bg: #111317;
   --content-bg: #191c22;
   --text: #e8e8e8;
-
-  /* Links and hover effects become blue in dark mode */
   --accent: #79b8ff;
-  --link: var(--accent);
-
-  /* Section headings also stay blue and visible in dark mode */
   --heading: #8ab4f8;
-
+  --link: var(--accent);
   --border: #343941;
   --header-bg: rgba(25, 28, 34, 0.96);
   --shadow: rgba(0, 0, 0, 0.35);
@@ -385,4 +375,13 @@ li { margin-bottom: 17px; }
   .nav-social {
     justify-content: center;
   }
+}
+
+/* Force the section-title colors so older rules cannot override them */
+body:not(.dark-mode) h2 {
+  color: #173b78 !important;
+}
+
+body.dark-mode h2 {
+  color: #8ab4f8 !important;
 }
