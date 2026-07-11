@@ -17,11 +17,54 @@
     const box = document.getElementById(id);
     box.style.display = box.style.display === "block" ? "none" : "block";
   }
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    updateThemeIcon();
+  }
+
+  function updateThemeIcon() {
+    const icon = document.getElementById("theme-icon");
+    if (!icon) return;
+    const isDark = document.body.classList.contains("dark-mode");
+    icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+    updateThemeIcon();
+  });
 </script>
 
   
 <body>
-  <main class="page">
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-social">
+        <a href="mailto:iman.iraei@mail.concordia.ca" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://scholar.google.com/citations?user=TGRh8okAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://github.com/imaniraei" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/iman-iraei-9b572585/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+
+      <div class="nav-menu">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="CV.pdf" target="_blank">CV</a>
+        <a href="#teaching">Teaching</a>
+        <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page" id="about">
     <section class="intro">
       <div class="intro-text">
         <h1>Iman Iraei</h1>
@@ -99,7 +142,7 @@
 
 
 
- <section>
+ <section id="publications" class="scroll-section">
   <h2>Selected Publications</h2>
 
   <div class="publication">
@@ -373,15 +416,55 @@ well.</div>
       </ul>
     </section>
 
-    <section>
-      <h2>Teaching Experience</h2>
-      <ul>
-        <li><strong>Teaching Assistant</strong> — ELEC 342, Discrete-Time Signals and Systems, Concordia University.</li>
-        <li><strong>Teaching Assistant & Marker</strong> — ELEC 311, Electronics I, Concordia University.</li>
-        <li><strong>Teaching Assistant</strong> — Circuit Analysis II, Tehran Polytechnic.</li>
-        <li><strong>Teaching Assistant</strong> — Signals and Systems, Tehran Polytechnic.</li>
-        <li><strong>Lecturer</strong> — Image Processing using MATLAB, Signals and Systems, and Signal Processing using MATLAB.</li>
-      </ul>
+    <section id="teaching" class="scroll-section teaching-section">
+      <h2>Teaching Experience and Development</h2>
+
+      <div class="teaching-list">
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Teaching Assistant</strong><span class="divider">|</span><em>ELEC 342, Discrete-Time Signals and Systems (DSP)</em><span class="divider">|</span><em>Concordia University</em></div>
+          <div class="teaching-date">Fall 2025</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Teaching Assistant &amp; Marker</strong><span class="divider">|</span><em>ELEC 311, Electronics I</em><span class="divider">|</span><em>Concordia University</em></div>
+          <div class="teaching-date">Winter 2025</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Teaching Assistant</strong><span class="divider">|</span><em>Circuit Analysis II</em><span class="divider">|</span><em>Tehran Polytechnic</em></div>
+          <div class="teaching-date">Winter 2015</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Tutor &amp; Lab Leader</strong><span class="divider">|</span><em>MATLAB Programming Principles</em><span class="divider">|</span><em>Tehran Polytechnic</em></div>
+          <div class="teaching-date">Fall 2014</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Teaching Assistant</strong><span class="divider">|</span><em>Signals and Systems</em><span class="divider">|</span><em>Tehran Polytechnic</em></div>
+          <div class="teaching-date">Winter 2014</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Lecturer</strong><span class="divider">|</span><em>Image Processing using MATLAB</em><span class="divider">|</span><em>Shariati Technical and Vocational University</em></div>
+          <div class="teaching-date">Spring 2011</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Lecturer</strong><span class="divider">|</span><em>Signals and Systems</em><span class="divider">|</span><em>Shariati Technical and Vocational University</em></div>
+          <div class="teaching-date">Fall 2010</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Lecturer</strong><span class="divider">|</span><em>Signal Processing using MATLAB</em><span class="divider">|</span><em>Tehran Institute of Technology</em></div>
+          <div class="teaching-date">Fall 2009–2014</div>
+        </div>
+
+        <div class="teaching-row">
+          <div class="teaching-details"><strong>Lecturer</strong><span class="divider">|</span><em>Image Processing using MATLAB</em><span class="divider">|</span><em>Tehran Institute of Technology</em></div>
+          <div class="teaching-date">Fall 2009–2014</div>
+        </div>
+      </div>
     </section>
 
     
