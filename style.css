@@ -212,18 +212,24 @@ li { margin-bottom: 17px; }
 .pub-buttons a {
   font-size: 18px;
   padding: 8px 32px;
-  border: 2px solid var(--button-text);
-  background: var(--button-bg);
-  color: var(--button-text);
+  border: 2px solid #222;
+  background: white;
+  color: #111;
   cursor: pointer;
   text-decoration: none;
   border-radius: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .pub-buttons button:hover,
-.pub-buttons a:hover {
-  background: var(--button-hover);
+.pub-buttons a:hover,
+.pub-buttons button:focus,
+.pub-buttons a:focus {
+  color: #c026c9;
+  border-color: #c026c9;
+  background: white;
   text-decoration: none;
+  outline: none;
 }
 
 .pub-content {
