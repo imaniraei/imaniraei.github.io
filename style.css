@@ -177,6 +177,7 @@ li { margin-bottom: 17px; }
   font-size: 28px;
   margin: 0 0 8px;
   line-height: 1.25;
+  padding-right: 155px; /* keeps the year from overlapping the title */
 }
 
 .authors {
@@ -330,7 +331,13 @@ li { margin-bottom: 17px; }
 
   .pub-year {
     position: static;
+    display: block;
+    margin-bottom: 8px;
     font-size: 36px;
+  }
+
+  .pub-content h3 {
+    padding-right: 0;
   }
 
   .teaching-row {
