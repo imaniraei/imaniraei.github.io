@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles.">
+  <meta name="author" content="Iman Iraei">
+
+  <title>SCOPE | Iman Iraei</title>
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <a class="back-link" href="../" aria-label="Return to Iman Iraei's homepage">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Iman Iraei</span>
+      </a>
+
+      <h1>
+        SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion
+        for Real-Time Object Detection in Autonomous Vehicles
+      </h1>
+
+      <div class="authors" aria-label="Paper authors">
+        <a href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a>
+        <span>·</span>
+        <a href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad</a>
+        <span>·</span>
+        <a href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy</a>
+      </div>
+
+      <div class="affiliations">
+        <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" target="_blank" rel="noopener">
+          Department of Electrical and Computer Engineering
+        </a>
+        <span>·</span>
+        <a href="https://www.concordia.ca/" target="_blank" rel="noopener">Concordia University</a>
+      </div>
+
+      <div class="action-buttons" aria-label="Project resources">
+        <a class="pill" href="#" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Paper</span>
+        </a>
+
+        <a class="pill" href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github"></i>
+          <span>Code</span>
+        </a>
+
+        <a class="pill" href="#models">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Models</span>
+        </a>
+
+        <a class="pill" href="#datasets">
+          <i class="fa-solid fa-database"></i>
+          <span>Datasets</span>
+        </a>
+
+        <button class="pill pill-button" type="button" data-scroll-target="bibtex">
+          <i class="fa-solid fa-book"></i>
+          <span>BibTeX</span>
+        </button>
+      </div>
+
+      <p class="status">Under Review at IEEE Transactions on Intelligent Transportation Systems</p>
+
+      <div class="scope-mark">
+        <span class="scope-word">SCOPE</span>
+        <span class="scope-tagline">Efficient · Adaptive · Real-Time</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section teaser-section">
+      <div class="container narrow">
+        <figure class="feature-figure">
+          <img src="assets/teaser.png" alt="SCOPE qualitative object detection results">
+          <figcaption>
+            SCOPE improves real-time object detection for complex autonomous-driving scenes,
+            including distant, small, and partially occluded objects.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="abstract">
+      <div class="container narrow">
+        <h2>Abstract</h2>
+        <p>
+          Reliable object detection is a critical component of perception systems in autonomous
+          driving, where recognizing objects and understanding complex scenes are essential for
+          safety and decision-making. Although EfficientDet offers a promising trade-off between
+          accuracy and efficiency, its performance can be limited by the loss of fine-grained
+          spatial details, suboptimal multi-scale feature fusion, and increased latency caused by
+          stacking multiple BiFPN modules.
+        </p>
+        <p>
+          We propose <strong>SCOPE</strong>, a latency-aware adaptive fusion framework for real-time
+          autonomous-driving perception. SCOPE enhances the EfficientNet backbone through spatial
+          and channel attention refinement inside MBConv blocks and introduces efficient adaptive
+          channel-wise feature weighting for multi-scale fusion. A single-layer adaptive attention
+          fusion module dynamically prioritizes informative features while reducing redundant
+          propagation and computational overhead. Experiments across multiple autonomous-driving
+          datasets show that SCOPE improves detection performance while reducing computational
+          complexity and inference latency.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="method">
+      <div class="container">
+        <h2>Method Overview</h2>
+
+        <figure class="feature-figure architecture">
+          <img src="assets/scope_architecture.png" alt="Architecture of the proposed SCOPE framework">
+          <figcaption>
+            Overview of SCOPE. Spatial-channel refinement is integrated into the EfficientNet
+            backbone, followed by efficient adaptive multi-scale feature fusion and lightweight
+            classification and regression heads.
+          </figcaption>
+        </figure>
+
+        <div class="method-grid">
+          <article class="method-card">
+            <div class="method-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3>Spatial-Channel Refinement</h3>
+            <p>
+              Channel and spatial attention are incorporated into MBConv blocks to preserve
+              discriminative details and improve feature quality throughout the backbone.
+            </p>
+          </article>
+
+          <article class="method-card">
+            <div class="method-icon"><i class="fa-solid fa-arrows-to-circle"></i></div>
+            <h3>Adaptive Feature Fusion</h3>
+            <p>
+              Channel-wise adaptive weighting dynamically emphasizes informative scales instead
+              of relying on fixed or purely scalar fusion weights.
+            </p>
+          </article>
+
+          <article class="method-card">
+            <div class="method-icon"><i class="fa-solid fa-gauge-high"></i></div>
+            <h3>Latency-Aware Design</h3>
+            <p>
+              A single efficient fusion layer reduces redundant computation while preserving
+              strong multi-scale representations for real-time inference.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contributions">
+      <div class="container narrow">
+        <h2>Key Contributions</h2>
+        <div class="contribution-list">
+          <div class="contribution-item">
+            <span class="number">01</span>
+            <p>
+              A unified spatial-channel optimization strategy that improves feature representation
+              in an EfficientNet-based object detector.
+            </p>
+          </div>
+          <div class="contribution-item">
+            <span class="number">02</span>
+            <p>
+              An efficient adaptive attention fusion module that dynamically prioritizes useful
+              multi-scale features through channel-wise weighting.
+            </p>
+          </div>
+          <div class="contribution-item">
+            <span class="number">03</span>
+            <p>
+              A latency-aware single-layer fusion design that improves detection performance while
+              reducing FLOPs and inference time.
+            </p>
+          </div>
+          <div class="contribution-item">
+            <span class="number">04</span>
+            <p>
+              Extensive evaluation on autonomous-driving datasets, including cross-domain tests
+              and qualitative analysis under challenging scene conditions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="results">
+      <div class="container">
+        <h2>Experimental Results</h2>
+
+        <h3 class="table-title">Udacity Self-Driving Car Dataset</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Backbone</th>
+                <th>mAP@[0.5:0.95] (%)</th>
+                <th>Parameters (M)</th>
+                <th>FLOPs (B)</th>
+                <th>Latency (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Faster R-CNN</td>
+                <td>ResNet-101 + FPN</td>
+                <td>60.09</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>EfficientDet-D3</td>
+                <td>EfficientNet-B3</td>
+                <td>60.42</td>
+                <td>—</td>
+                <td>19.22</td>
+                <td>0.1042</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>SCOPE-S3</strong></td>
+                <td>EfficientNet-B3 + Attention</td>
+                <td><strong>61.05</strong></td>
+                <td><strong>5.94</strong></td>
+                <td><strong>17.75</strong></td>
+                <td><strong>0.0913</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="table-title">KITTI Validation Set</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>mAP@[0.5:0.95] (%)</th>
+                <th>Parameters (M)</th>
+                <th>FLOPs (B)</th>
+                <th>Latency (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DETR</td>
+                <td>56.83</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>EfficientDet-D3</td>
+                <td>65.41</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>SCOPE-S3</strong></td>
+                <td><strong>67.28</strong></td>
+                <td><strong>5.94</strong></td>
+                <td><strong>14.93</strong></td>
+                <td><strong>0.0754</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="table-title">Fusion Ablation on KITTI</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fusion Configuration</th>
+                <th>Fusion Depth</th>
+                <th>mAP@0.5 (%)</th>
+                <th>mAP@0.75 (%)</th>
+                <th>mAP@[0.5:0.95] (%)</th>
+                <th>Latency (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td><strong>Adaptive Attention BiFPN</strong></td>
+                <td><strong>1</strong></td>
+                <td><strong>72.98</strong></td>
+                <td><strong>61.18</strong></td>
+                <td><strong>59.02</strong></td>
+                <td><strong>0.0599</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="table-title">Complexity and Latency Across Model Scales</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scale</th>
+                <th>EfficientDet FLOPs (B)</th>
+                <th>SCOPE FLOPs (B)</th>
+                <th>FLOPs Reduction (%)</th>
+                <th>EfficientDet Latency (s)</th>
+                <th>SCOPE Latency (s)</th>
+                <th>Latency Reduction (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>D0 / S0</td><td>2.55</td><td>1.91</td><td>25.10</td><td>0.0810</td><td>0.0780</td><td>3.70</td></tr>
+              <tr><td>D1 / S1</td><td>4.88</td><td>4.12</td><td>15.57</td><td>0.0868</td><td>0.0813</td><td>6.28</td></tr>
+              <tr><td>D2 / S2</td><td>9.61</td><td>8.62</td><td>10.30</td><td>0.0943</td><td>0.0857</td><td>9.16</td></tr>
+              <tr class="highlight-row"><td><strong>D3 / S3</strong></td><td><strong>19.22</strong></td><td><strong>17.75</strong></td><td><strong>7.65</strong></td><td><strong>0.1042</strong></td><td><strong>0.0914</strong></td><td><strong>12.30</strong></td></tr>
+              <tr><td>D4 / S4</td><td>38.72</td><td>36.27</td><td>6.33</td><td>0.1171</td><td>0.0988</td><td>15.62</td></tr>
+              <tr><td>D5 / S5</td><td>88.30</td><td>81.89</td><td>7.26</td><td>0.1340</td><td>0.1086</td><td>18.98</td></tr>
+              <tr><td>D6 / S6</td><td>178.67</td><td>145.24</td><td>18.71</td><td>0.1561</td><td>0.1213</td><td>22.27</td></tr>
+              <tr><td>D7 / S7</td><td>321.82</td><td>258.25</td><td>19.75</td><td>0.1850</td><td>0.1380</td><td>25.41</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="table-note">
+          “—” indicates values that are not included on this public project page.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="qualitative">
+      <div class="container">
+        <h2>Qualitative Results</h2>
+
+        <div class="result-grid">
+          <figure class="result-card">
+            <img src="assets/udacity_results.png" alt="Detection and Grad-CAM results on the Udacity dataset">
+            <figcaption>Udacity: detection and attention visualization.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <img src="assets/kitti_results.png" alt="Detection and Grad-CAM results on the KITTI dataset">
+            <figcaption>KITTI: detection and attention visualization.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <img src="assets/bdd100k_results.png" alt="Cross-domain detection results on BDD100K">
+            <figcaption>BDD100K: cross-domain qualitative evaluation.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <img src="assets/nuscenes_results.png" alt="Cross-domain detection results on nuScenes">
+            <figcaption>nuScenes: cross-domain qualitative evaluation.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="datasets">
+      <div class="container narrow">
+        <h2>Datasets</h2>
+
+        <div class="dataset-grid">
+          <article class="dataset-card">
+            <i class="fa-solid fa-car-side"></i>
+            <h3>Udacity</h3>
+            <p>
+              Primary training and evaluation dataset with diverse urban driving scenes and
+              multiple road-user categories.
+            </p>
+          </article>
+
+          <article class="dataset-card">
+            <i class="fa-solid fa-road"></i>
+            <h3>KITTI</h3>
+            <p>
+              Used for validation, comparison with established baselines, and fusion ablation
+              experiments.
+            </p>
+          </article>
+
+          <article class="dataset-card">
+            <i class="fa-solid fa-city"></i>
+            <h3>BDD100K</h3>
+            <p>
+              Used for cross-domain qualitative evaluation under varied traffic, weather, and
+              illumination conditions.
+            </p>
+          </article>
+
+          <article class="dataset-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <h3>nuScenes</h3>
+            <p>
+              Used to assess generalization to complex urban scenes captured with a different
+              sensor and data distribution.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="container narrow">
+        <h2>Code and Models</h2>
+        <div class="resource-box">
+          <i class="fa-brands fa-github"></i>
+          <div>
+            <h3>Official SCOPE Repository</h3>
+            <p>
+              Source code, trained models, configuration files, and detailed inference
+              instructions will be released in the official repository.
+            </p>
+            <a href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">
+              github.com/imaniraei/SCOPE
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="bibtex">
+      <div class="container narrow">
+        <h2>BibTeX</h2>
+
+        <div class="bibtex-toolbar">
+          <span>Cite this work</span>
+          <button id="copy-bibtex" type="button">
+            <i class="fa-regular fa-copy"></i>
+            <span>Copy</span>
+          </button>
+        </div>
+
+        <pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026scope,
+  title   = {SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles},
+  author  = {Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
+  journal = {Submitted to IEEE Transactions on Intelligent Transportation Systems},
+  year    = {2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section acknowledgements">
+      <div class="container narrow">
+        <h2>Acknowledgements</h2>
+        <p>
+          This research was supported in part by the Natural Sciences and Engineering Research
+          Council of Canada (NSERC) and the Regroupement Stratégique en Microélectronique du Québec.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Iman Iraei ·
+      <a href="../">Academic Homepage</a> ·
+      <a href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll("[data-scroll-target]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const target = document.getElementById(button.dataset.scrollTarget);
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    const copyButton = document.getElementById("copy-bibtex");
+    const bibtexText = document.getElementById("bibtex-text");
+
+    copyButton.addEventListener("click", async function () {
+      try {
+        await navigator.clipboard.writeText(bibtexText.innerText);
+        copyButton.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied</span>';
+
+        window.setTimeout(function () {
+          copyButton.innerHTML = '<i class="fa-regular fa-copy"></i><span>Copy</span>';
+        }, 1800);
+      } catch (error) {
+        copyButton.innerHTML = '<i class="fa-solid fa-xmark"></i><span>Copy failed</span>';
+      }
+    });
+  </script>
+</body>
+</html>
