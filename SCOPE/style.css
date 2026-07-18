@@ -170,29 +170,7 @@ h1 {
   text-align: center;
 }
 
-.scope-mark {
-  margin-top: 12px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.scope-word {
-  color: #263f8e;
-  font-size: clamp(58px, 6vw, 98px);
-  font-weight: 900;
-  letter-spacing: 0.055em;
-  line-height: 1;
-}
-
-.scope-tagline {
-  margin-top: 6px;
-  color: #4f79dc;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
 
 .section {
   padding: 92px 0;
@@ -582,10 +560,6 @@ footer p {
     font-size: 19px;
   }
 
-  .scope-tagline {
-    font-size: 13px;
-  }
-
   .section {
     padding: 67px 0;
   }
@@ -613,4 +587,37 @@ footer p {
     align-items: flex-start;
     gap: 12px;
   }
+}
+
+
+.custom-icon {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  display: block;
+  color: currentColor;
+}
+
+.models-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+
+.bibtex-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+  transform: rotate(-7deg);
+}
+
+.venue-logo {
+  width: min(760px, 82vw);
+  margin: 28px auto 0;
+}
+
+.venue-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
