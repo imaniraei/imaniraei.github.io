@@ -1,332 +1,423 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCOPE | Iman Iraei</title>
-  <meta name="description" content="SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles.">
-  <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="hero">
-    <div class="hero-inner">
-      <a class="back-link" href="../"><i class="fa-solid fa-arrow-left"></i> Iman Iraei</a>
+*{box-sizing:border-box}
+:root{
+  --bg:#fff;--alt:#f6f7f9;--text:#303030;--muted:#70757d;--blue:#3275e8;
+  --pill:#333;--pill-hover:#191919;--line:#dfe3e8;--shadow:0 18px 55px rgba(28,39,55,.12);
+  --wide:1420px;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Lato",Arial,sans-serif;font-size:19px;line-height:1.65}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:none;filter:brightness(.86)}
+img{display:block;max-width:100%}
+.hero{min-height:790px;display:flex;align-items:center;border-bottom:1px solid #eee}
+.hero-inner{width:min(var(--wide),92vw);margin:auto;padding:74px 0 65px;text-align:center;position:relative}
+.back-link{position:absolute;top:20px;left:0;display:flex;gap:8px;align-items:center;color:#707070;font-size:16px;font-weight:700}
+h1{max-width:1370px;margin:18px auto 38px;font-size:clamp(50px,5vw,88px);line-height:1.01;letter-spacing:-.045em}
+.authors,.affiliations{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.authors{font-size:clamp(23px,2vw,34px)}
+.authors a{color:#111}
+.affiliations{font-size:clamp(19px,1.55vw,27px)}
+.action-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:35px 0 28px}
+.pill{min-height:62px;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:13px 29px;border:0;border-radius:999px;background:var(--pill);color:#fff;font:inherit;font-size:23px;cursor:pointer;transition:.18s}
+.pill:hover{background:var(--pill-hover);color:#fff;transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.pill i{font-size:25px;min-width:26px}
+.button-icon{width:37px;height:37px;object-fit:contain}
+.exact-icon{filter:none}
+.status{font-size:24px;font-weight:700;text-align:center;margin:25px 0 8px}
+.venue-logo{width:min(780px,82vw);margin:22px auto 0}
+.venue-logo img{width:100%;height:auto}
+.section{padding:92px 0;scroll-margin-top:20px}
+.alt{background:var(--alt)}
+.container{margin:auto}
+.container.wide{width:min(var(--wide),92vw)}
+.container.narrow{width:min(1050px,88vw)}
+h2{margin:0 0 40px;text-align:center;font-size:clamp(38px,4vw,58px);line-height:1.1}
+h3{font-size:30px;line-height:1.25;margin:0 0 22px}
+.abstract-text{text-align:justify}
+.figure{margin:0 0 56px}
+.figure img{width:100%;border-radius:10px;box-shadow:var(--shadow);background:#fff}
+.figure figcaption{margin-top:14px;color:var(--muted);font-size:16px;text-align:center}
+.method-points,.dataset-list{margin:0 0 65px;padding-left:28px}
+.method-points li,.dataset-list li{margin-bottom:18px}
+.method-block,.result-block{margin-top:75px}
+.results-summary{max-width:1120px;margin:0 auto 65px;text-align:justify}
+.bibtex-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-weight:700}
+.bibtex-toolbar button{display:flex;gap:8px;align-items:center;padding:9px 15px;border:1px solid #ccd2d9;border-radius:8px;background:#fff;font:inherit;font-size:15px;cursor:pointer}
+.bibtex-code{margin:0;padding:25px;overflow:auto;border-radius:12px;background:#25282e;color:#f5f7fa;font:15px/1.6 "SFMono-Regular",Consolas,monospace}
+footer{padding:30px 20px;border-top:1px solid var(--line);text-align:center;color:#707070}
+footer p{margin:0;font-size:15px}
+@media(max-width:800px){
+  body{font-size:17px}.hero{min-height:auto}.hero-inner{padding-top:78px}
+  h1{font-size:42px}.authors{font-size:21px}.affiliations{font-size:18px}
+  .pill{min-height:52px;padding:11px 18px;font-size:18px}.button-icon{width:30px;height:30px}
+  .status{font-size:19px}.section{padding:65px 0}h2{font-size:38px}
+  .abstract-text,.results-summary{text-align:left}
+}
 
-      <h1>SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles</h1>
 
-      <div class="authors">
-        <a class="author-link" href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a>
-        <span>·</span>
-        <a class="author-link senior-author" href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad<sup>†</sup></a>
-        <span>·</span>
-        <a class="author-link senior-author" href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy<sup>†</sup></a>
-      </div>
-      <div class="co-senior-note">†Co-senior authors</div>
+/* Wider reading layout inspired by the reference project pages */
+.container.content-wide {
+  width: min(1220px, 86vw);
+}
 
-      <div class="affiliations">
-        <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" target="_blank" rel="noopener">Department of Electrical and Computer Engineering</a>
-        <span>·</span>
-        <a href="https://www.concordia.ca/" target="_blank" rel="noopener">Concordia University</a>
-      </div>
+.container.content-wide p,
+.container.content-wide li {
+  font-size: 20px;
+  line-height: 1.55;
+}
 
-      <div class="action-buttons">
-        <a class="pill" href="#" target="_blank" rel="noopener">
-          <i class="fa-solid fa-file-lines"></i><span>Paper</span>
-        </a>
-        <a class="pill" href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">
-          <i class="fa-brands fa-github"></i><span>Code</span>
-        </a>
-        <a class="pill" href="#datasets">
-          <i class="fa-solid fa-database"></i><span>Datasets</span>
-        </a>
-        <button class="pill" type="button" data-scroll-target="bibtex">
-          <svg class="bibtex-svg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14 45 8l8 7-8 6-27 6-7-6z"/><path d="M11 21v11l7 6 27-6 8-6V15"/><path d="M18 38v11l7 6 26-7V37l-6-5"/><path d="M25 55 18 49"/></g></svg>
-          <span>BibTeX</span>
-        </button>
-      </div>
+.abstract-text,
+.results-summary {
+  text-align: justify;
+}
 
-      <p class="status">Under Review at IEEE Transactions on Intelligent Transportation Systems</p>
+/* Keep figures compact rather than full browser width */
+.method-block .figure,
+.result-block .figure,
+.section > .container.wide > .figure {
+  width: min(980px, 82vw);
+  margin-left: auto;
+  margin-right: auto;
+}
 
-      <div class="venue-logo">
-        <img src="assets/tits-logo.png" alt="IEEE Intelligent Transportation Systems Society">
-      </div>
-    </div>
-  </header>
+.medium-figure {
+  width: min(980px, 80vw) !important;
+}
 
-  <main>
-    <section class="section">
-      <div class="container wide">
-        <h2>Overview</h2>
-        <figure class="figure">
-          <img src="assets/scope_overview.png" alt="Overview of the SCOPE architecture">
-          <figcaption>Overall SCOPE framework, combining an EfficientNet backbone enhanced with spatial-channel attention, adaptive multi-scale feature selection and lightweight prediction heads.</figcaption>
-        </figure>
-      </div>
-    </section>
+.figure-grid {
+  display: grid;
+  gap: 28px;
+  align-items: start;
+}
 
-    <section class="section alt" id="abstract">
-      <div class="container content-wide">
-        <h2>Abstract</h2>
-        <p class="abstract-text">Reliable object detection is a critical component of perception systems in autonomous driving, where recognizing objects and understanding complex scenes are essential for safety and decision-making. Among existing detectors, EfficientDet offers a promising trade-off between accuracy and efficiency through its compound scaling and Bi-directional Feature Pyramid Network (BiFPN). However, its performance is hindered by three key challenges: (1) loss of fine-grained spatial details due to backbone downsampling, (2) limited contextual awareness resulting from suboptimal feature fusion in BiFPN layers, and (3) increased inference latency caused by stacking multiple BiFPN modules. Unlike conventional BiFPN architectures that rely on static multi-scale fusion, autonomous driving scenes require adaptive feature selection mechanisms capable of handling severe scale variation and real-time latency constraints. To overcome these limitations, we propose SCOPE, a latency-aware adaptive fusion framework designed for real-time autonomous driving perception. SCOPE enhances the EfficientNet backbone through spatial and channel attention refinement within the MBConv blocks, while adaptive channel-wise feature weighting is utilized in a novel efficient attention-guided feature fusion strategy to improve multi-scale representation quality and fusion efficiency. The proposed single-layer adaptive attention fusion method dynamically prioritizes informative multi-scale features while reducing redundant feature propagation and computational overhead. Extensive experiments on multiple autonomous driving datasets demonstrate that SCOPE improves detection accuracy, while simultaneously reducing computational complexity and inference latency, thereby outperforming state-of-the-art object detection methods in terms of both detection performance and computational efficiency.</p>
-      </div>
-    </section>
+.figure-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 
-    <section class="section" id="method">
-      <div class="container content-wide">
-        <h2>Method</h2>
+.figure.compact {
+  width: 100% !important;
+  margin-bottom: 0;
+}
 
-        <ul class="method-points justified-method">
-          <li><strong>Spatial-channel feature refinement.</strong> SCOPE inserts CBAM into selected EfficientNet MBConv blocks so that channel attention first emphasizes informative feature responses and spatial attention then focuses the representation on relevant object regions. This refinement is designed to preserve discriminative details that can otherwise be weakened by repeated downsampling.</li>
-          <li><strong>Adaptive attention-guided feature fusion.</strong> Instead of relying on static scalar fusion weights, the proposed Adaptive Attention BiFPN applies channel-wise gating to multi-scale feature maps. Global context is compressed through pooling and fully connected transformations, producing scale-aware channel weights that dynamically prioritize useful features before fusion.</li>
-          <li><strong>Single-layer latency-aware BiFPN.</strong> While EfficientDet increases BiFPN depth as the model scale grows, SCOPE fixes the fusion depth to one layer across all model variants. The adaptive gating mechanism compensates for the reduced depth, limiting redundant feature propagation and decreasing FLOPs and inference latency.</li>
-          <li><strong>Efficient prediction heads.</strong> The fused pyramid features are shared by lightweight classification and box-regression subnetworks composed of depthwise separable convolutions, enabling accurate multi-scale prediction without introducing a large computational burden.</li>
-          <li><strong>Compound model scaling.</strong> SCOPE follows the EfficientDet scaling philosophy for image resolution, feature width and prediction-head depth, while retaining the proposed attention-enhanced backbone and fixed-depth adaptive fusion design from S0 to S7.</li>
-        </ul>
+.figure.compact img {
+  box-shadow: 0 10px 32px rgba(28,39,55,.10);
+}
 
-        <div class="method-block">
-          <h3>MBConv with Spatial-Channel Attention</h3>
-          <figure class="figure">
-            <img src="assets/mbconv_cbam.png" alt="MBConv block enhanced with CBAM">
-            <figcaption>CBAM is integrated into the MBConv pathway to perform sequential channel and spatial refinement.</figcaption>
-          </figure>
-        </div>
+/* HTML result tables */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 auto 38px;
+  border: 1px solid #cfd5dc;
+  border-radius: 8px;
+  background: #fff;
+}
 
-        <div class="method-block">
-          <h3>Adaptive Attention BiFPN</h3>
-          <figure class="figure">
-            <img src="assets/adaptive_bifpn.png" alt="Adaptive Attention BiFPN">
-            <figcaption>Channel-wise attention gating is applied at the feature-fusion nodes to adaptively weight multi-scale representations.</figcaption>
-          </figure>
-        </div>
+.results-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #202020;
+}
 
-        <div class="method-block">
-          <h3>Prediction Head</h3>
-          <figure class="figure">
-            <img src="assets/prediction_head.jpg" alt="SCOPE prediction head">
-            <figcaption>Shared classification and box-regression heads operate on the fused feature pyramid and are optimized through a multi-task objective.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
+.results-table th,
+.results-table td {
+  border: 1px solid #aeb6bf;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
 
-    
-    <section class="section alt" id="results">
-      <div class="container content-wide">
-        <h2>Results</h2>
+.results-table th {
+  background: #f1f4f7;
+  font-weight: 900;
+}
 
-        <p class="results-summary">
-          Across the compound model scales, SCOPE consistently improves the accuracy–efficiency trade-off over EfficientDet. The gains are especially pronounced in lightweight models, where spatial-channel refinement recovers discriminative information lost through backbone downsampling, while the adaptive single-layer fusion design reduces redundant computation. At larger scales, the latency and FLOPs savings become increasingly substantial because SCOPE avoids stacking progressively deeper BiFPN modules. The in-domain and cross-domain results on BDD100K and nuScenes further indicate that the proposed feature refinement and adaptive fusion mechanisms remain effective under changes in scene distribution.
-        </p>
+.results-table td:first-child,
+.results-table th:first-child {
+  text-align: center;
+}
 
-        <div class="result-block">
-          <h3>Udacity Compound-Scaling Evaluation</h3>
-          <div class="table-wrap">
-            <table class="results-table dense-table">
-              <thead>
-                <tr>
-                  <th rowspan="2">Scale<br><span class="math">φ</span></th>
-                  <th rowspan="2">Input Resolution</th>
-                  <th rowspan="2">Model</th>
-                  <th colspan="2">BiFPN / Adaptive Fusion</th>
-                  <th rowspan="2">Box/Class<br>#layers</th>
-                  <th colspan="3">Detection Accuracy</th>
-                  <th rowspan="2">Params (M) ↓</th>
-                  <th rowspan="2">FLOPs (B) ↓</th>
-                  <th rowspan="2">Latency (s) ↓</th>
-                </tr>
-                <tr>
-                  <th>#channels</th>
-                  <th>#layers</th>
-                  <th>mAP<sub>0.5</sub> ↑</th>
-                  <th>mAP<sub>0.75</sub> ↑</th>
-                  <th>mAP ↑</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="2">0</td><td rowspan="2">512</td><td>EfficientDet-D0</td><td rowspan="2">64</td><td>3</td><td rowspan="2">3</td><td>66.41</td><td>54.15</td><td>52.32</td><td>3.94</td><td>2.55</td><td>0.0810</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>1</td><td>68.32</td><td>56.22</td><td>54.41</td><td>3.16</td><td>1.91</td><td>0.0782</td></tr>
-                <tr><td rowspan="2">1</td><td rowspan="2">640</td><td>EfficientDet-D1</td><td rowspan="2">88</td><td>4</td><td rowspan="2">3</td><td>72.15</td><td>58.09</td><td>56.19</td><td>4.31</td><td>4.88</td><td>0.0868</td></tr>
-                <tr class="ours"><td>SCOPE-S1</td><td>1</td><td>73.60</td><td>59.59</td><td>57.78</td><td>3.57</td><td>4.12</td><td>0.0813</td></tr>
-                <tr><td rowspan="2">2</td><td rowspan="2">768</td><td>EfficientDet-D2</td><td rowspan="2">112</td><td>5</td><td rowspan="2">3</td><td>75.88</td><td>60.62</td><td>58.65</td><td>4.98</td><td>9.61</td><td>0.0943</td></tr>
-                <tr class="ours"><td>SCOPE-S2</td><td>1</td><td>76.86</td><td>61.62</td><td>59.89</td><td>4.29</td><td>8.62</td><td>0.0856</td></tr>
-                <tr><td rowspan="2">3</td><td rowspan="2">896</td><td>EfficientDet-D3</td><td rowspan="2">160</td><td>6</td><td rowspan="2">4</td><td>78.32</td><td>62.27</td><td>60.42</td><td>6.42</td><td>19.22</td><td>0.1042</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>1</td><td>79.00</td><td>62.96</td><td>61.05</td><td>5.94</td><td>17.75</td><td>0.0913</td></tr>
-                <tr><td rowspan="2">4</td><td rowspan="2">1024</td><td>EfficientDet-D4</td><td rowspan="2">224</td><td>7</td><td rowspan="2">4</td><td>79.91</td><td>63.33</td><td>61.45</td><td>9.25</td><td>38.72</td><td>0.1171</td></tr>
-                <tr class="ours"><td>SCOPE-S4</td><td>1</td><td>80.41</td><td>63.83</td><td>62.01</td><td>8.96</td><td>36.27</td><td>0.0987</td></tr>
-                <tr><td rowspan="2">5</td><td rowspan="2">1280</td><td>EfficientDet-D5</td><td rowspan="2">288</td><td>7</td><td rowspan="2">4</td><td>80.95</td><td>63.99</td><td>62.11</td><td>16.71</td><td>88.30</td><td>0.1340</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>1</td><td>81.14</td><td>64.19</td><td>62.49</td><td>16.62</td><td>81.89</td><td>0.1081</td></tr>
-                <tr><td rowspan="2">6</td><td rowspan="2">1280</td><td>EfficientDet-D6</td><td rowspan="2">384</td><td>8</td><td rowspan="2">5</td><td>81.62</td><td>64.41</td><td>62.66</td><td>29.86</td><td>178.67</td><td>0.1661</td></tr>
-                <tr class="ours"><td>SCOPE-S6</td><td>1</td><td>81.68</td><td>64.47</td><td>62.71</td><td>27.44</td><td>145.24</td><td>0.1217</td></tr>
-                <tr><td rowspan="2">7</td><td rowspan="2">1536</td><td>EfficientDet-D7</td><td rowspan="2">384</td><td>8</td><td rowspan="2">5</td><td>82.04</td><td>64.78</td><td>63.09</td><td>51.11</td><td>321.82</td><td>0.1850</td></tr>
-                <tr class="ours"><td>SCOPE-S7</td><td>1</td><td>81.97</td><td>64.68</td><td>62.98</td><td>46.51</td><td>258.25</td><td>0.1382</td></tr>
-              </tbody>
-            </table>
-          </div>
+.results-table .ours {
+  background: #eef6ff;
+  font-weight: 700;
+}
 
-          <div class="figure-grid two-col">
-            <figure class="figure compact"><img src="assets/curve_udacity.png" alt="Udacity accuracy versus FLOPs and latency"></figure>
-            <figure class="figure compact"><img src="assets/improvement_udacity.png" alt="Relative improvements on Udacity"></figure>
-          </div>
-        </div>
+.results-table tbody tr:hover {
+  background: #f8fbff;
+}
 
-        <div class="result-block">
-          <h3>KITTI Compound-Scaling Evaluation</h3>
-          <div class="figure-grid two-col">
-            <figure class="figure compact"><img src="assets/curve_kitti.png" alt="KITTI accuracy versus FLOPs and latency"></figure>
-            <figure class="figure compact"><img src="assets/improvement_kitti.png" alt="Relative improvements on KITTI"></figure>
-          </div>
-        </div>
+.dense-table {
+  min-width: 1220px;
+  font-size: 13.5px;
+}
 
-        <div class="result-block">
-          <h3>Precision-Recall Analysis</h3>
-          <figure class="figure medium-figure"><img src="assets/precision_recall.png" alt="Precision-recall curves"></figure>
-        </div>
+.dense-table th,
+.dense-table td {
+  padding: 6px 7px;
+}
 
-        <div class="result-block">
-          <h3>In-Domain Evaluation on BDD100K and nuScenes</h3>
-          <div class="table-wrap">
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Dataset</th><th>Scale</th><th>Model</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="6"><strong>BDD100K</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>63.88</td><td>50.94</td><td>49.03</td><td>3.94</td><td>2.21</td><td>0.0802</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>65.91</td><td>53.02</td><td>51.27</td><td>3.16</td><td>1.78</td><td>0.0749</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>75.96</td><td>60.31</td><td>58.44</td><td>6.42</td><td>18.62</td><td>0.1036</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>77.84</td><td>62.17</td><td>60.65</td><td>5.94</td><td>17.14</td><td>0.0905</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>79.44</td><td>62.52</td><td>60.83</td><td>16.71</td><td>87.93</td><td>0.1322</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>80.21</td><td>63.40</td><td>61.96</td><td>16.62</td><td>81.34</td><td>0.1061</td></tr>
-                <tr><td rowspan="6"><strong>nuScenes</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>61.75</td><td>48.86</td><td>46.71</td><td>3.94</td><td>1.86</td><td>0.0753</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>63.67</td><td>50.95</td><td>48.92</td><td>3.16</td><td>1.46</td><td>0.0710</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>73.48</td><td>58.77</td><td>56.64</td><td>6.42</td><td>18.48</td><td>0.0995</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>75.36</td><td>60.58</td><td>58.73</td><td>5.94</td><td>17.02</td><td>0.0889</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>77.81</td><td>61.39</td><td>59.62</td><td>16.71</td><td>86.64</td><td>0.1298</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>78.54</td><td>62.15</td><td>60.48</td><td>16.62</td><td>80.11</td><td>0.1027</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+.sota-table td:first-child {
+  text-align: left;
+}
 
-        <div class="result-block">
-          <h3>Cross-Domain Generalization</h3>
-          <div class="table-wrap">
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Testing Dataset</th><th>Scale</th><th>Model</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="6"><strong>BDD100K</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>54.91</td><td>41.26</td><td>39.14</td><td>3.94</td><td>2.24</td><td>0.0817</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>57.02</td><td>43.08</td><td>41.35</td><td>3.16</td><td>1.81</td><td>0.0756</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>61.25</td><td>46.92</td><td>44.84</td><td>6.42</td><td>18.64</td><td>0.1036</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>63.61</td><td>48.84</td><td>47.06</td><td>5.94</td><td>17.17</td><td>0.0913</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>65.38</td><td>49.87</td><td>47.66</td><td>16.71</td><td>88.12</td><td>0.1337</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>66.84</td><td>51.02</td><td>49.18</td><td>16.62</td><td>81.58</td><td>0.1079</td></tr>
-                <tr><td rowspan="6"><strong>nuScenes</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>52.74</td><td>39.18</td><td>36.91</td><td>3.94</td><td>1.92</td><td>0.0768</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>54.62</td><td>40.95</td><td>38.88</td><td>3.16</td><td>1.49</td><td>0.0719</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>59.84</td><td>44.71</td><td>42.67</td><td>6.42</td><td>18.53</td><td>0.1029</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>62.02</td><td>46.39</td><td>44.81</td><td>5.94</td><td>17.08</td><td>0.0907</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>63.11</td><td>47.08</td><td>44.93</td><td>16.71</td><td>86.83</td><td>0.1308</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>64.36</td><td>48.11</td><td>46.27</td><td>16.62</td><td>80.29</td><td>0.1041</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+.math {
+  font-style: italic;
+}
 
-        <div class="result-block">
-          <h3>Comparison with State-of-the-Art Detectors on Udacity</h3>
-          <div class="table-wrap">
-            <table class="results-table sota-table">
-              <thead>
-                <tr>
-                  <th>Backbone + Fusion</th><th>Detector</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>MobileNet-v2 + FPN</td><td>Faster R-CNN</td><td>62.57</td><td>48.98</td><td>47.18</td><td>23.44</td><td>52.74</td><td>0.0803</td></tr>
-                <tr><td>ResNet50</td><td>Faster R-CNN</td><td>64.78</td><td>54.34</td><td>52.61</td><td>41.42</td><td>98.21</td><td>0.1492</td></tr>
-                <tr><td>ResNet101 + FPN</td><td>Faster R-CNN</td><td>74.62</td><td>61.83</td><td>60.09</td><td>63.27</td><td>161.42</td><td>0.2140</td></tr>
-                <tr><td>MobileNet-v2 + StairNet</td><td>SSD</td><td>60.09</td><td>42.75</td><td>40.92</td><td>7.24</td><td>6.01</td><td>0.0351</td></tr>
-                <tr><td>MobileNet-v2 + FPN</td><td>SSD</td><td>64.51</td><td>44.94</td><td>42.12</td><td>6.99</td><td>4.26</td><td>0.0416</td></tr>
-                <tr><td>VGG16 + StairNet</td><td>SSD</td><td>65.67</td><td>45.78</td><td>43.93</td><td>32.22</td><td>84.99</td><td>0.0513</td></tr>
-                <tr><td>VGG16 + FPN</td><td>SSD</td><td>72.44</td><td>46.59</td><td>44.71</td><td>31.83</td><td>82.11</td><td>0.0507</td></tr>
-                <tr><td>ResNet50 + FPN</td><td>RetinaNet</td><td>76.25</td><td>52.55</td><td>50.77</td><td>34.924</td><td>96.83</td><td>0.0997</td></tr>
-                <tr><td>EfficientNet-B3 + BiFPN</td><td>EfficientDet-D3</td><td>78.32</td><td>62.27</td><td>60.42</td><td>6.42</td><td>19.22</td><td>0.1042</td></tr>
-                <tr><td>—</td><td>DETR (original)</td><td>68.72</td><td>57.14</td><td>55.35</td><td>41.82</td><td>100.49</td><td>0.1475</td></tr>
-                <tr><td>—</td><td>YOLOv3</td><td>62.38</td><td>50.83</td><td>48.95</td><td>7.55</td><td>70.78</td><td>0.0253</td></tr>
-                <tr class="ours"><td>EfficientNet-B3 + CBAM + Adaptive Attention Fusion</td><td>SCOPE</td><td>79.00</td><td>62.96</td><td>61.05</td><td>5.94</td><td>17.75</td><td>0.0913</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
+@media (max-width: 900px) {
+  .container.content-wide {
+    width: 90vw;
+  }
 
-<section class="section" id="datasets">
-      <div class="container content-wide">
-        <h2>Datasets</h2>
-        <ul class="dataset-list">
-          <li><strong>Udacity Self-Driving Car Dataset:</strong> primary training and evaluation benchmark for compound scaling and comparison with state-of-the-art detectors.</li>
-          <li><strong>KITTI:</strong> validation benchmark used to assess the proposed architecture across scales and evaluate precision-recall behavior.</li>
-          <li><strong>BDD100K:</strong> used for both in-domain experiments and cross-domain evaluation of models trained exclusively on Udacity.</li>
-          <li><strong>nuScenes:</strong> used to assess generalization to a different autonomous-driving data distribution without target-domain fine-tuning.</li>
-        </ul>
-      </div>
-    </section>
+  .container.content-wide p,
+  .container.content-wide li {
+    font-size: 18px;
+  }
 
-    <section class="section alt" id="bibtex">
-      <div class="container content-wide">
-        <h2>BibTeX</h2>
-        <div class="bibtex-toolbar">
-          <span>Cite this work</span>
-          <button id="copy-bibtex" type="button"><i class="fa-regular fa-copy"></i><span>Copy</span></button>
-        </div>
-        <pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026scope,
-  title   = {SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles},
-  author  = {Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
-  journal = {Submitted to IEEE Transactions on Intelligent Transportation Systems},
-  year    = {2026}
-}</code></pre>
-      </div>
-    </section>
-  </main>
+  .figure-grid.two-col {
+    grid-template-columns: 1fr;
+  }
 
-  <footer>
-    <p>© 2026 Iman Iraei · <a href="../">Academic Homepage</a> · <a href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">GitHub</a></p>
-  </footer>
+  .method-block .figure,
+  .result-block .figure,
+  .section > .container.wide > .figure,
+  .medium-figure {
+    width: 100% !important;
+  }
 
-  <script>
-    document.querySelectorAll("[data-scroll-target]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = document.getElementById(button.dataset.scrollTarget);
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-      });
-    });
+  .abstract-text,
+  .results-summary {
+    text-align: left;
+  }
+}
 
-    const copyButton = document.getElementById("copy-bibtex");
-    copyButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(document.getElementById("bibtex-text").innerText);
-        copyButton.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied</span>';
-        setTimeout(() => copyButton.innerHTML = '<i class="fa-regular fa-copy"></i><span>Copy</span>', 1600);
-      } catch (e) {
-        copyButton.textContent = "Copy failed";
-      }
-    });
-  </script>
-</body>
-</html>
+
+/* =========================================================
+   V3 layout correction: centered text, smaller images,
+   and tables contained inside the page.
+   ========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Balanced content width */
+.container.content-wide,
+.container.wide,
+.container.narrow {
+  width: min(1080px, calc(100vw - 56px)) !important;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.container.content-wide p,
+.container.content-wide li,
+.container.wide p,
+.container.wide li,
+.container.narrow p,
+.container.narrow li {
+  font-size: 18px !important;
+  line-height: 1.58 !important;
+}
+
+.abstract-text,
+.results-summary {
+  width: 100%;
+  max-width: 1040px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: justify;
+}
+
+/* Smaller overview and method figures */
+.section > .container.wide > .figure,
+.method-block .figure {
+  width: min(800px, 100%) !important;
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Smaller results figures */
+.result-block .figure,
+.medium-figure {
+  width: min(820px, 100%) !important;
+  max-width: 820px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.figure-grid {
+  width: min(980px, 100%) !important;
+  max-width: 980px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.figure-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+
+.figure.compact {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.figure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Keep every table inside the text column */
+.table-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.results-table {
+  width: 100%;
+  min-width: 880px !important;
+  max-width: none;
+  font-size: 13px !important;
+}
+
+.dense-table {
+  min-width: 1040px !important;
+  font-size: 11.5px !important;
+}
+
+.results-table th,
+.results-table td {
+  padding: 6px 7px !important;
+}
+
+.sota-table {
+  min-width: 940px !important;
+}
+
+/* Prevent lists and blocks from drifting outside the image/text alignment */
+.method-points,
+.dataset-list,
+.method-block,
+.result-block {
+  width: 100%;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .container.content-wide,
+  .container.wide,
+  .container.narrow {
+    width: calc(100vw - 28px) !important;
+  }
+
+  .container.content-wide p,
+  .container.content-wide li,
+  .container.wide p,
+  .container.wide li,
+  .container.narrow p,
+  .container.narrow li {
+    font-size: 17px !important;
+  }
+
+  .abstract-text,
+  .results-summary {
+    text-align: left;
+  }
+
+  .figure-grid.two-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section > .container.wide > .figure,
+  .method-block .figure,
+  .result-block .figure,
+  .medium-figure,
+  .figure-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+
+/* ===== V4 finishing refinements ===== */
+.hero h1 {
+  max-width: 1260px;
+  font-size: clamp(46px, 4.45vw, 76px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.038em !important;
+}
+.authors .author-link {
+  color: #3275e8 !important;
+  text-decoration: none;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+}
+.authors .author-link:hover {
+  color: #1d58bd !important;
+  text-decoration: underline;
+  filter: none;
+}
+.authors .author-link sup {
+  margin-left: 2px;
+  color: #6f6f6f;
+  font-size: 58%;
+  line-height: 0;
+  vertical-align: super;
+}
+.co-senior-note {
+  margin-top: 3px;
+  color: #8a8a8a;
+  font-size: 17px;
+  line-height: 1.3;
+  text-align: center;
+}
+.bibtex-svg {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  display: block;
+  color: #ffffff;
+  transform: rotate(-7deg);
+}
+.justified-method {
+  padding-left: 30px;
+}
+.justified-method li {
+  text-align: justify !important;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+.justified-method li strong {
+  text-align: left;
+}
+.method-points {
+  max-width: 1040px !important;
+}
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: 39px !important;
+    line-height: 1.06 !important;
+  }
+  .co-senior-note { font-size: 15px; }
+  .justified-method li {
+    text-align: left !important;
+    hyphens: none;
+  }
+}
