@@ -53,3 +53,143 @@ footer p{margin:0;font-size:15px}
   .status{font-size:19px}.section{padding:65px 0}h2{font-size:38px}
   .abstract-text,.results-summary{text-align:left}
 }
+
+
+/* Wider reading layout inspired by the reference project pages */
+.container.content-wide {
+  width: min(1220px, 86vw);
+}
+
+.container.content-wide p,
+.container.content-wide li {
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.abstract-text,
+.results-summary {
+  text-align: justify;
+}
+
+/* Keep figures compact rather than full browser width */
+.method-block .figure,
+.result-block .figure,
+.section > .container.wide > .figure {
+  width: min(980px, 82vw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medium-figure {
+  width: min(980px, 80vw) !important;
+}
+
+.figure-grid {
+  display: grid;
+  gap: 28px;
+  align-items: start;
+}
+
+.figure-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.figure.compact {
+  width: 100% !important;
+  margin-bottom: 0;
+}
+
+.figure.compact img {
+  box-shadow: 0 10px 32px rgba(28,39,55,.10);
+}
+
+/* HTML result tables */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 auto 38px;
+  border: 1px solid #cfd5dc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.results-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #202020;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid #aeb6bf;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.results-table th {
+  background: #f1f4f7;
+  font-weight: 900;
+}
+
+.results-table td:first-child,
+.results-table th:first-child {
+  text-align: center;
+}
+
+.results-table .ours {
+  background: #eef6ff;
+  font-weight: 700;
+}
+
+.results-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.dense-table {
+  min-width: 1220px;
+  font-size: 13.5px;
+}
+
+.dense-table th,
+.dense-table td {
+  padding: 6px 7px;
+}
+
+.sota-table td:first-child {
+  text-align: left;
+}
+
+.math {
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .container.content-wide {
+    width: 90vw;
+  }
+
+  .container.content-wide p,
+  .container.content-wide li {
+    font-size: 18px;
+  }
+
+  .figure-grid.two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .method-block .figure,
+  .result-block .figure,
+  .section > .container.wide > .figure,
+  .medium-figure {
+    width: 100% !important;
+  }
+
+  .abstract-text,
+  .results-summary {
+    text-align: left;
+  }
+}
