@@ -20,12 +20,13 @@
       <h1>SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles</h1>
 
       <div class="authors">
-        <a href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a>
+        <a class="author-link" href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a>
         <span>·</span>
-        <a href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad</a>
+        <a class="author-link senior-author" href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad<sup>†</sup></a>
         <span>·</span>
-        <a href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy</a>
+        <a class="author-link senior-author" href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy<sup>†</sup></a>
       </div>
+      <div class="co-senior-note">†Co-senior authors</div>
 
       <div class="affiliations">
         <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" target="_blank" rel="noopener">Department of Electrical and Computer Engineering</a>
@@ -44,7 +45,7 @@
           <i class="fa-solid fa-database"></i><span>Datasets</span>
         </a>
         <button class="pill" type="button" data-scroll-target="bibtex">
-          <img class="button-icon exact-icon" src="assets/bibtex-icon.png" alt="">
+          <svg class="bibtex-svg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14 45 8l8 7-8 6-27 6-7-6z"/><path d="M11 21v11l7 6 27-6 8-6V15"/><path d="M18 38v11l7 6 26-7V37l-6-5"/><path d="M25 55 18 49"/></g></svg>
           <span>BibTeX</span>
         </button>
       </div>
@@ -79,7 +80,7 @@
       <div class="container content-wide">
         <h2>Method</h2>
 
-        <ul class="method-points">
+        <ul class="method-points justified-method">
           <li><strong>Spatial-channel feature refinement.</strong> SCOPE inserts CBAM into selected EfficientNet MBConv blocks so that channel attention first emphasizes informative feature responses and spatial attention then focuses the representation on relevant object regions. This refinement is designed to preserve discriminative details that can otherwise be weakened by repeated downsampling.</li>
           <li><strong>Adaptive attention-guided feature fusion.</strong> Instead of relying on static scalar fusion weights, the proposed Adaptive Attention BiFPN applies channel-wise gating to multi-scale feature maps. Global context is compressed through pooling and fully connected transformations, producing scale-aware channel weights that dynamically prioritize useful features before fusion.</li>
           <li><strong>Single-layer latency-aware BiFPN.</strong> While EfficientDet increases BiFPN depth as the model scale grows, SCOPE fixes the fusion depth to one layer across all model variants. The adaptive gating mechanism compensates for the reduced depth, limiting redundant feature propagation and decreasing FLOPs and inference latency.</li>
