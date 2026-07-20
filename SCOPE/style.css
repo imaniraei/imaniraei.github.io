@@ -477,3 +477,24 @@ body {
 @media (max-width: 900px) {
   .method-item p { text-align: left !important; }
 }
+
+
+/* Clickable T-ITS journal logo */
+a.venue-logo {
+  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+}
+
+a.venue-logo:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+  box-shadow: 0 10px 26px rgba(28, 39, 55, 0.12);
+  filter: none;
+}
+
+a.venue-logo:focus-visible {
+  outline: 3px solid #3275e8;
+  outline-offset: 5px;
+}
