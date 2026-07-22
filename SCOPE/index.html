@@ -1,329 +1,3462 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCOPE | Iman Iraei</title>
-  <meta name="description" content="SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles.">
-  <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=5">
-</head>
-<body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   SCOPE | Iman Iraei
+  </title>
+  <meta content="SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles." name="description"/>
+  <link href="../favicon.png" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="style.css?v=6" rel="stylesheet"/>
+ </head>
+ <body>
   <header class="hero">
-    <div class="hero-inner">
-      <a class="back-link" href="../"><i class="fa-solid fa-arrow-left"></i> Iman Iraei</a>
-
-      <h1>SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles</h1>
-
-      <div class="authors" id="project-authors">
-        <a class="author-link" style="color:#3275e8;" href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a>
-        <span>·</span>
-        <a class="author-link senior-author" style="color:#3275e8;" href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad<sup>†</sup></a>
-        <span>·</span>
-        <a class="author-link senior-author" style="color:#3275e8;" href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy<sup>†</sup></a>
-      </div>
-      <div class="co-senior-note" style="color:#8a8a8a;">†Co-senior authors</div>
-
-      <div class="affiliations">
-        <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" target="_blank" rel="noopener">Department of Electrical and Computer Engineering</a>
-        <span>·</span>
-        <a href="https://www.concordia.ca/" target="_blank" rel="noopener">Concordia University</a>
-      </div>
-
-      <div class="action-buttons">
-        <a class="pill" href="#" target="_blank" rel="noopener">
-          <i class="fa-solid fa-file-lines"></i><span>Paper</span>
-        </a>
-        <a class="pill" href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">
-          <i class="fa-brands fa-github"></i><span>Code</span>
-        </a>
-        <a class="pill" href="#datasets">
-          <i class="fa-solid fa-database"></i><span>Datasets</span>
-        </a>
-        <button class="pill" type="button" data-scroll-target="bibtex">
-          <svg class="bibtex-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-            <g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 15 45 8l9 8-9 7-28 7-8-7z"/>
-              <path d="M9 23v12l8 7 28-7 9-7V16"/>
-              <path d="M17 42v10l9 6 26-7V39l-7-4"/>
-            </g>
-          </svg>
-          <span>BibTeX</span>
-        </button>
-      </div>
-
-      <p class="status">Under Review at IEEE Transactions on Intelligent Transportation Systems</p>
-
-      <a
-        class="venue-logo"
-        href="https://ieee-itss.org/pub/t-its/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open the IEEE Transactions on Intelligent Transportation Systems website"
-        title="IEEE Transactions on Intelligent Transportation Systems"
-      >
-        <img src="assets/tits-logo.png" alt="IEEE Intelligent Transportation Systems Society">
-      </a>
+   <div class="hero-inner">
+    <a class="back-link" href="../">
+     <i class="fa-solid fa-arrow-left">
+     </i>
+     Iman Iraei
+    </a>
+    <h1>
+     SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles
+    </h1>
+    <div class="authors" id="project-authors">
+     <a class="author-link" href="https://imaniraei.github.io/" rel="noopener" style="color:#3275e8;" target="_blank">
+      Iman Iraei
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a class="author-link senior-author" href="https://www.concordia.ca/faculty/omair-ahmad.html" rel="noopener" style="color:#3275e8;" target="_blank">
+      M. Omair Ahmad
+      <sup>
+       &dagger;
+      </sup>
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a class="author-link senior-author" href="https://www.concordia.ca/faculty/srikanta-swamy.html" rel="noopener" style="color:#3275e8;" target="_blank">
+      M. N. S. Swamy
+      <sup>
+       &dagger;
+      </sup>
+     </a>
     </div>
+    <div class="co-senior-note" style="color:#8a8a8a;">
+     &dagger;Co-senior authors
+    </div>
+    <div class="affiliations">
+     <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" rel="noopener" target="_blank">
+      Department of Electrical and Computer Engineering
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a href="https://www.concordia.ca/" rel="noopener" target="_blank">
+      Concordia University
+     </a>
+    </div>
+    <div class="action-buttons">
+     <a class="pill" href="#" rel="noopener" target="_blank">
+      <i class="fa-solid fa-file-lines">
+      </i>
+      <span>
+       Paper
+      </span>
+     </a>
+     <a class="pill" href="https://github.com/imaniraei/SCOPE" rel="noopener" target="_blank">
+      <i class="fa-brands fa-github">
+      </i>
+      <span>
+       Code
+      </span>
+     </a>
+     <a class="pill" href="#datasets">
+      <i class="fa-solid fa-database">
+      </i>
+      <span>
+       Datasets
+      </span>
+     </a>
+     <button class="pill" data-scroll-target="bibtex" type="button">
+      <svg aria-hidden="true" class="bibtex-svg" focusable="false" viewbox="0 0 64 64">
+       <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+        <path d="M17 15 45 8l9 8-9 7-28 7-8-7z">
+        </path>
+        <path d="M9 23v12l8 7 28-7 9-7V16">
+        </path>
+        <path d="M17 42v10l9 6 26-7V39l-7-4">
+        </path>
+       </g>
+      </svg>
+      <span>
+       BibTeX
+      </span>
+     </button>
+    </div>
+    <p class="status">
+     Under Review at IEEE Transactions on Intelligent Transportation Systems
+    </p>
+    <a aria-label="Open the IEEE Transactions on Intelligent Transportation Systems website" class="venue-logo" href="https://ieee-itss.org/pub/t-its/" rel="noopener noreferrer" target="_blank" title="IEEE Transactions on Intelligent Transportation Systems">
+     <img alt="IEEE Intelligent Transportation Systems Society" src="assets/tits-logo.png"/>
+    </a>
+   </div>
   </header>
-
   <main>
-    <section class="section">
-      <div class="container wide">
-        <h2>Overview</h2>
-        <figure class="figure">
-          <img src="assets/scope_overview.png" alt="Overview of the SCOPE architecture">
-          <figcaption>Overall SCOPE framework, combining an EfficientNet backbone enhanced with spatial-channel attention, adaptive multi-scale feature selection and lightweight prediction heads.</figcaption>
-        </figure>
+   <section class="section">
+    <div class="container wide">
+     <h2>
+      Overview
+     </h2>
+     <figure class="figure">
+      <img alt="Overview of the SCOPE architecture" src="assets/scope_overview.png"/>
+      <figcaption>
+       Overall SCOPE framework, combining an EfficientNet backbone enhanced with spatial-channel attention, adaptive multi-scale feature selection and lightweight prediction heads.
+      </figcaption>
+     </figure>
+    </div>
+   </section>
+   <section class="section alt" id="abstract">
+    <div class="container content-wide">
+     <h2>
+      Abstract
+     </h2>
+     <p class="abstract-text">
+      Reliable object detection is a critical component of perception systems in autonomous driving, where recognizing objects and understanding complex scenes are essential for safety and decision-making. Among existing detectors, EfficientDet offers a promising trade-off between accuracy and efficiency through its compound scaling and Bi-directional Feature Pyramid Network (BiFPN). However, its performance is hindered by three key challenges: (1) loss of fine-grained spatial details due to backbone downsampling, (2) limited contextual awareness resulting from suboptimal feature fusion in BiFPN layers, and (3) increased inference latency caused by stacking multiple BiFPN modules. Unlike conventional BiFPN architectures that rely on static multi-scale fusion, autonomous driving scenes require adaptive feature selection mechanisms capable of handling severe scale variation and real-time latency constraints. To overcome these limitations, we propose SCOPE, a latency-aware adaptive fusion framework designed for real-time autonomous driving perception. SCOPE enhances the EfficientNet backbone through spatial and channel attention refinement within the MBConv blocks, while adaptive channel-wise feature weighting is utilized in a novel efficient attention-guided feature fusion strategy to improve multi-scale representation quality and fusion efficiency. The proposed single-layer adaptive attention fusion method dynamically prioritizes informative multi-scale features while reducing redundant feature propagation and computational overhead. Extensive experiments on multiple autonomous driving datasets demonstrate that SCOPE improves detection accuracy, while simultaneously reducing computational complexity and inference latency, thereby outperforming state-of-the-art object detection methods in terms of both detection performance and computational efficiency.
+     </p>
+    </div>
+   </section>
+   <section class="section" id="method">
+    <div class="container content-wide">
+     <h2>
+      Method
+     </h2>
+     <div class="method-points justified-method">
+      <div class="method-item">
+       <span class="method-bullet">
+        &bull;
+       </span>
+       <p>
+        <strong>
+         Spatial-channel feature refinement.
+        </strong>
+        SCOPE inserts CBAM into selected EfficientNet MBConv blocks so that channel attention first emphasizes informative feature responses and spatial attention then focuses the representation on relevant object regions. This refinement is designed to preserve discriminative details that can otherwise be weakened by repeated downsampling.
+       </p>
       </div>
-    </section>
-
-    <section class="section alt" id="abstract">
-      <div class="container content-wide">
-        <h2>Abstract</h2>
-        <p class="abstract-text">Reliable object detection is a critical component of perception systems in autonomous driving, where recognizing objects and understanding complex scenes are essential for safety and decision-making. Among existing detectors, EfficientDet offers a promising trade-off between accuracy and efficiency through its compound scaling and Bi-directional Feature Pyramid Network (BiFPN). However, its performance is hindered by three key challenges: (1) loss of fine-grained spatial details due to backbone downsampling, (2) limited contextual awareness resulting from suboptimal feature fusion in BiFPN layers, and (3) increased inference latency caused by stacking multiple BiFPN modules. Unlike conventional BiFPN architectures that rely on static multi-scale fusion, autonomous driving scenes require adaptive feature selection mechanisms capable of handling severe scale variation and real-time latency constraints. To overcome these limitations, we propose SCOPE, a latency-aware adaptive fusion framework designed for real-time autonomous driving perception. SCOPE enhances the EfficientNet backbone through spatial and channel attention refinement within the MBConv blocks, while adaptive channel-wise feature weighting is utilized in a novel efficient attention-guided feature fusion strategy to improve multi-scale representation quality and fusion efficiency. The proposed single-layer adaptive attention fusion method dynamically prioritizes informative multi-scale features while reducing redundant feature propagation and computational overhead. Extensive experiments on multiple autonomous driving datasets demonstrate that SCOPE improves detection accuracy, while simultaneously reducing computational complexity and inference latency, thereby outperforming state-of-the-art object detection methods in terms of both detection performance and computational efficiency.</p>
+      <div class="method-item">
+       <span class="method-bullet">
+        &bull;
+       </span>
+       <p>
+        <strong>
+         Adaptive attention-guided feature fusion.
+        </strong>
+        Instead of relying on static scalar fusion weights, the proposed Adaptive Attention BiFPN applies channel-wise gating to multi-scale feature maps. Global context is compressed through pooling and fully connected transformations, producing scale-aware channel weights that dynamically prioritize useful features before fusion.
+       </p>
       </div>
-    </section>
-
-    <section class="section" id="method">
-      <div class="container content-wide">
-        <h2>Method</h2>
-
-        <div class="method-points justified-method">
-          <div class="method-item"><span class="method-bullet">•</span><p><strong>Spatial-channel feature refinement.</strong> SCOPE inserts CBAM into selected EfficientNet MBConv blocks so that channel attention first emphasizes informative feature responses and spatial attention then focuses the representation on relevant object regions. This refinement is designed to preserve discriminative details that can otherwise be weakened by repeated downsampling.</p></div>
-          <div class="method-item"><span class="method-bullet">•</span><p><strong>Adaptive attention-guided feature fusion.</strong> Instead of relying on static scalar fusion weights, the proposed Adaptive Attention BiFPN applies channel-wise gating to multi-scale feature maps. Global context is compressed through pooling and fully connected transformations, producing scale-aware channel weights that dynamically prioritize useful features before fusion.</p></div>
-          <div class="method-item"><span class="method-bullet">•</span><p><strong>Single-layer latency-aware BiFPN.</strong> While EfficientDet increases BiFPN depth as the model scale grows, SCOPE fixes the fusion depth to one layer across all model variants. The adaptive gating mechanism compensates for the reduced depth, limiting redundant feature propagation and decreasing FLOPs and inference latency.</p></div>
-          <div class="method-item"><span class="method-bullet">•</span><p><strong>Efficient prediction heads.</strong> The fused pyramid features are shared by lightweight classification and box-regression subnetworks composed of depthwise separable convolutions, enabling accurate multi-scale prediction without introducing a large computational burden.</p></div>
-          <div class="method-item"><span class="method-bullet">•</span><p><strong>Compound model scaling.</strong> SCOPE follows the EfficientDet scaling philosophy for image resolution, feature width and prediction-head depth, while retaining the proposed attention-enhanced backbone and fixed-depth adaptive fusion design from S0 to S7.</p></div>
-        </div>
-
-        <div class="method-block">
-          <h3>MBConv with Spatial-Channel Attention</h3>
-          <figure class="figure">
-            <img src="assets/mbconv_cbam.png" alt="MBConv block enhanced with CBAM">
-            <figcaption>CBAM is integrated into the MBConv pathway to perform sequential channel and spatial refinement.</figcaption>
-          </figure>
-        </div>
-
-        <div class="method-block">
-          <h3>Adaptive Attention BiFPN</h3>
-          <figure class="figure">
-            <img src="assets/adaptive_bifpn.png" alt="Adaptive Attention BiFPN">
-            <figcaption>Channel-wise attention gating is applied at the feature-fusion nodes to adaptively weight multi-scale representations.</figcaption>
-          </figure>
-        </div>
-
-        <div class="method-block">
-          <h3>Prediction Head</h3>
-          <figure class="figure">
-            <img src="assets/prediction_head.jpg" alt="SCOPE prediction head">
-            <figcaption>Shared classification and box-regression heads operate on the fused feature pyramid and are optimized through a multi-task objective.</figcaption>
-          </figure>
-        </div>
+      <div class="method-item">
+       <span class="method-bullet">
+        &bull;
+       </span>
+       <p>
+        <strong>
+         Single-layer latency-aware BiFPN.
+        </strong>
+        While EfficientDet increases BiFPN depth as the model scale grows, SCOPE fixes the fusion depth to one layer across all model variants. The adaptive gating mechanism compensates for the reduced depth, limiting redundant feature propagation and decreasing FLOPs and inference latency.
+       </p>
       </div>
-    </section>
-
-    
-    <section class="section alt" id="results">
-      <div class="container content-wide">
-        <h2>Results</h2>
-
-        <p class="results-summary">
-          Across the compound model scales, SCOPE consistently improves the accuracy–efficiency trade-off over EfficientDet. The gains are especially pronounced in lightweight models, where spatial-channel refinement recovers discriminative information lost through backbone downsampling, while the adaptive single-layer fusion design reduces redundant computation. At larger scales, the latency and FLOPs savings become increasingly substantial because SCOPE avoids stacking progressively deeper BiFPN modules. The in-domain and cross-domain results on BDD100K and nuScenes further indicate that the proposed feature refinement and adaptive fusion mechanisms remain effective under changes in scene distribution.
-        </p>
-
-        <div class="result-block">
-          <h3>Udacity Compound-Scaling Evaluation</h3>
-          <div class="table-wrap">
-            <table class="results-table dense-table">
-              <thead>
-                <tr>
-                  <th rowspan="2">Scale<br><span class="math">φ</span></th>
-                  <th rowspan="2">Input Resolution</th>
-                  <th rowspan="2">Model</th>
-                  <th colspan="2">BiFPN / Adaptive Fusion</th>
-                  <th rowspan="2">Box/Class<br>#layers</th>
-                  <th colspan="3">Detection Accuracy</th>
-                  <th rowspan="2">Params (M) ↓</th>
-                  <th rowspan="2">FLOPs (B) ↓</th>
-                  <th rowspan="2">Latency (s) ↓</th>
-                </tr>
-                <tr>
-                  <th>#channels</th>
-                  <th>#layers</th>
-                  <th>mAP<sub>0.5</sub> ↑</th>
-                  <th>mAP<sub>0.75</sub> ↑</th>
-                  <th>mAP ↑</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="2">0</td><td rowspan="2">512</td><td>EfficientDet-D0</td><td rowspan="2">64</td><td>3</td><td rowspan="2">3</td><td>66.41</td><td>54.15</td><td>52.32</td><td>3.94</td><td>2.55</td><td>0.0810</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>1</td><td>68.32</td><td>56.22</td><td>54.41</td><td>3.16</td><td>1.91</td><td>0.0782</td></tr>
-                <tr><td rowspan="2">1</td><td rowspan="2">640</td><td>EfficientDet-D1</td><td rowspan="2">88</td><td>4</td><td rowspan="2">3</td><td>72.15</td><td>58.09</td><td>56.19</td><td>4.31</td><td>4.88</td><td>0.0868</td></tr>
-                <tr class="ours"><td>SCOPE-S1</td><td>1</td><td>73.60</td><td>59.59</td><td>57.78</td><td>3.57</td><td>4.12</td><td>0.0813</td></tr>
-                <tr><td rowspan="2">2</td><td rowspan="2">768</td><td>EfficientDet-D2</td><td rowspan="2">112</td><td>5</td><td rowspan="2">3</td><td>75.88</td><td>60.62</td><td>58.65</td><td>4.98</td><td>9.61</td><td>0.0943</td></tr>
-                <tr class="ours"><td>SCOPE-S2</td><td>1</td><td>76.86</td><td>61.62</td><td>59.89</td><td>4.29</td><td>8.62</td><td>0.0856</td></tr>
-                <tr><td rowspan="2">3</td><td rowspan="2">896</td><td>EfficientDet-D3</td><td rowspan="2">160</td><td>6</td><td rowspan="2">4</td><td>78.32</td><td>62.27</td><td>60.42</td><td>6.42</td><td>19.22</td><td>0.1042</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>1</td><td>79.00</td><td>62.96</td><td>61.05</td><td>5.94</td><td>17.75</td><td>0.0913</td></tr>
-                <tr><td rowspan="2">4</td><td rowspan="2">1024</td><td>EfficientDet-D4</td><td rowspan="2">224</td><td>7</td><td rowspan="2">4</td><td>79.91</td><td>63.33</td><td>61.45</td><td>9.25</td><td>38.72</td><td>0.1171</td></tr>
-                <tr class="ours"><td>SCOPE-S4</td><td>1</td><td>80.41</td><td>63.83</td><td>62.01</td><td>8.96</td><td>36.27</td><td>0.0987</td></tr>
-                <tr><td rowspan="2">5</td><td rowspan="2">1280</td><td>EfficientDet-D5</td><td rowspan="2">288</td><td>7</td><td rowspan="2">4</td><td>80.95</td><td>63.99</td><td>62.11</td><td>16.71</td><td>88.30</td><td>0.1340</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>1</td><td>81.14</td><td>64.19</td><td>62.49</td><td>16.62</td><td>81.89</td><td>0.1081</td></tr>
-                <tr><td rowspan="2">6</td><td rowspan="2">1280</td><td>EfficientDet-D6</td><td rowspan="2">384</td><td>8</td><td rowspan="2">5</td><td>81.62</td><td>64.41</td><td>62.66</td><td>29.86</td><td>178.67</td><td>0.1661</td></tr>
-                <tr class="ours"><td>SCOPE-S6</td><td>1</td><td>81.68</td><td>64.47</td><td>62.71</td><td>27.44</td><td>145.24</td><td>0.1217</td></tr>
-                <tr><td rowspan="2">7</td><td rowspan="2">1536</td><td>EfficientDet-D7</td><td rowspan="2">384</td><td>8</td><td rowspan="2">5</td><td>82.04</td><td>64.78</td><td>63.09</td><td>51.11</td><td>321.82</td><td>0.1850</td></tr>
-                <tr class="ours"><td>SCOPE-S7</td><td>1</td><td>81.97</td><td>64.68</td><td>62.98</td><td>46.51</td><td>258.25</td><td>0.1382</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="figure-grid two-col">
-            <figure class="figure compact"><img src="assets/curve_udacity.png" alt="Udacity accuracy versus FLOPs and latency"></figure>
-            <figure class="figure compact"><img src="assets/improvement_udacity.png" alt="Relative improvements on Udacity"></figure>
-          </div>
-        </div>
-
-        <div class="result-block">
-          <h3>KITTI Compound-Scaling Evaluation</h3>
-          <div class="figure-grid two-col">
-            <figure class="figure compact"><img src="assets/curve_kitti.png" alt="KITTI accuracy versus FLOPs and latency"></figure>
-            <figure class="figure compact"><img src="assets/improvement_kitti.png" alt="Relative improvements on KITTI"></figure>
-          </div>
-        </div>
-
-        <div class="result-block">
-          <h3>Precision-Recall Analysis</h3>
-          <figure class="figure medium-figure"><img src="assets/precision_recall.png" alt="Precision-recall curves"></figure>
-        </div>
-
-        <div class="result-block">
-          <h3>In-Domain Evaluation on BDD100K and nuScenes</h3>
-          <div class="table-wrap">
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Dataset</th><th>Scale</th><th>Model</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="6"><strong>BDD100K</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>63.88</td><td>50.94</td><td>49.03</td><td>3.94</td><td>2.21</td><td>0.0802</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>65.91</td><td>53.02</td><td>51.27</td><td>3.16</td><td>1.78</td><td>0.0749</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>75.96</td><td>60.31</td><td>58.44</td><td>6.42</td><td>18.62</td><td>0.1036</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>77.84</td><td>62.17</td><td>60.65</td><td>5.94</td><td>17.14</td><td>0.0905</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>79.44</td><td>62.52</td><td>60.83</td><td>16.71</td><td>87.93</td><td>0.1322</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>80.21</td><td>63.40</td><td>61.96</td><td>16.62</td><td>81.34</td><td>0.1061</td></tr>
-                <tr><td rowspan="6"><strong>nuScenes</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>61.75</td><td>48.86</td><td>46.71</td><td>3.94</td><td>1.86</td><td>0.0753</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>63.67</td><td>50.95</td><td>48.92</td><td>3.16</td><td>1.46</td><td>0.0710</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>73.48</td><td>58.77</td><td>56.64</td><td>6.42</td><td>18.48</td><td>0.0995</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>75.36</td><td>60.58</td><td>58.73</td><td>5.94</td><td>17.02</td><td>0.0889</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>77.81</td><td>61.39</td><td>59.62</td><td>16.71</td><td>86.64</td><td>0.1298</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>78.54</td><td>62.15</td><td>60.48</td><td>16.62</td><td>80.11</td><td>0.1027</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="result-block">
-          <h3>Cross-Domain Generalization</h3>
-          <div class="table-wrap">
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Testing Dataset</th><th>Scale</th><th>Model</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td rowspan="6"><strong>BDD100K</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>54.91</td><td>41.26</td><td>39.14</td><td>3.94</td><td>2.24</td><td>0.0817</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>57.02</td><td>43.08</td><td>41.35</td><td>3.16</td><td>1.81</td><td>0.0756</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>61.25</td><td>46.92</td><td>44.84</td><td>6.42</td><td>18.64</td><td>0.1036</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>63.61</td><td>48.84</td><td>47.06</td><td>5.94</td><td>17.17</td><td>0.0913</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>65.38</td><td>49.87</td><td>47.66</td><td>16.71</td><td>88.12</td><td>0.1337</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>66.84</td><td>51.02</td><td>49.18</td><td>16.62</td><td>81.58</td><td>0.1079</td></tr>
-                <tr><td rowspan="6"><strong>nuScenes</strong></td><td rowspan="2">0</td><td>EfficientDet-D0</td><td>52.74</td><td>39.18</td><td>36.91</td><td>3.94</td><td>1.92</td><td>0.0768</td></tr>
-                <tr class="ours"><td>SCOPE-S0</td><td>54.62</td><td>40.95</td><td>38.88</td><td>3.16</td><td>1.49</td><td>0.0719</td></tr>
-                <tr><td rowspan="2">3</td><td>EfficientDet-D3</td><td>59.84</td><td>44.71</td><td>42.67</td><td>6.42</td><td>18.53</td><td>0.1029</td></tr>
-                <tr class="ours"><td>SCOPE-S3</td><td>62.02</td><td>46.39</td><td>44.81</td><td>5.94</td><td>17.08</td><td>0.0907</td></tr>
-                <tr><td rowspan="2">5</td><td>EfficientDet-D5</td><td>63.11</td><td>47.08</td><td>44.93</td><td>16.71</td><td>86.83</td><td>0.1308</td></tr>
-                <tr class="ours"><td>SCOPE-S5</td><td>64.36</td><td>48.11</td><td>46.27</td><td>16.62</td><td>80.29</td><td>0.1041</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="result-block">
-          <h3>Comparison with State-of-the-Art Detectors on Udacity</h3>
-          <div class="table-wrap">
-            <table class="results-table sota-table">
-              <thead>
-                <tr>
-                  <th>Backbone + Fusion</th><th>Detector</th>
-                  <th>mAP<sub>0.5</sub> ↑</th><th>mAP<sub>0.75</sub> ↑</th><th>mAP ↑</th>
-                  <th>Params (M) ↓</th><th>FLOPs (B) ↓</th><th>Latency (s) ↓</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>MobileNet-v2 + FPN</td><td>Faster R-CNN</td><td>62.57</td><td>48.98</td><td>47.18</td><td>23.44</td><td>52.74</td><td>0.0803</td></tr>
-                <tr><td>ResNet50</td><td>Faster R-CNN</td><td>64.78</td><td>54.34</td><td>52.61</td><td>41.42</td><td>98.21</td><td>0.1492</td></tr>
-                <tr><td>ResNet101 + FPN</td><td>Faster R-CNN</td><td>74.62</td><td>61.83</td><td>60.09</td><td>63.27</td><td>161.42</td><td>0.2140</td></tr>
-                <tr><td>MobileNet-v2 + StairNet</td><td>SSD</td><td>60.09</td><td>42.75</td><td>40.92</td><td>7.24</td><td>6.01</td><td>0.0351</td></tr>
-                <tr><td>MobileNet-v2 + FPN</td><td>SSD</td><td>64.51</td><td>44.94</td><td>42.12</td><td>6.99</td><td>4.26</td><td>0.0416</td></tr>
-                <tr><td>VGG16 + StairNet</td><td>SSD</td><td>65.67</td><td>45.78</td><td>43.93</td><td>32.22</td><td>84.99</td><td>0.0513</td></tr>
-                <tr><td>VGG16 + FPN</td><td>SSD</td><td>72.44</td><td>46.59</td><td>44.71</td><td>31.83</td><td>82.11</td><td>0.0507</td></tr>
-                <tr><td>ResNet50 + FPN</td><td>RetinaNet</td><td>76.25</td><td>52.55</td><td>50.77</td><td>34.924</td><td>96.83</td><td>0.0997</td></tr>
-                <tr><td>EfficientNet-B3 + BiFPN</td><td>EfficientDet-D3</td><td>78.32</td><td>62.27</td><td>60.42</td><td>6.42</td><td>19.22</td><td>0.1042</td></tr>
-                <tr><td>—</td><td>DETR (original)</td><td>68.72</td><td>57.14</td><td>55.35</td><td>41.82</td><td>100.49</td><td>0.1475</td></tr>
-                <tr><td>—</td><td>YOLOv3</td><td>62.38</td><td>50.83</td><td>48.95</td><td>7.55</td><td>70.78</td><td>0.0253</td></tr>
-                <tr class="ours"><td>EfficientNet-B3 + CBAM + Adaptive Attention Fusion</td><td>SCOPE</td><td>79.00</td><td>62.96</td><td>61.05</td><td>5.94</td><td>17.75</td><td>0.0913</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="method-item">
+       <span class="method-bullet">
+        &bull;
+       </span>
+       <p>
+        <strong>
+         Efficient prediction heads.
+        </strong>
+        The fused pyramid features are shared by lightweight classification and box-regression subnetworks composed of depthwise separable convolutions, enabling accurate multi-scale prediction without introducing a large computational burden.
+       </p>
       </div>
-    </section>
-
-<section class="section" id="datasets">
-      <div class="container content-wide">
-        <h2>Datasets</h2>
-        <ul class="dataset-list">
-          <li><strong>Udacity Self-Driving Car Dataset:</strong> primary training and evaluation benchmark for compound scaling and comparison with state-of-the-art detectors.</li>
-          <li><strong>KITTI:</strong> validation benchmark used to assess the proposed architecture across scales and evaluate precision-recall behavior.</li>
-          <li><strong>BDD100K:</strong> used for both in-domain experiments and cross-domain evaluation of models trained exclusively on Udacity.</li>
-          <li><strong>nuScenes:</strong> used to assess generalization to a different autonomous-driving data distribution without target-domain fine-tuning.</li>
-        </ul>
+      <div class="method-item">
+       <span class="method-bullet">
+        &bull;
+       </span>
+       <p>
+        <strong>
+         Compound model scaling.
+        </strong>
+        SCOPE follows the EfficientDet scaling philosophy for image resolution, feature width and prediction-head depth, while retaining the proposed attention-enhanced backbone and fixed-depth adaptive fusion design from S0 to S7.
+       </p>
       </div>
-    </section>
-
-    <section class="section alt" id="bibtex">
-      <div class="container content-wide">
-        <h2>BibTeX</h2>
-        <div class="bibtex-toolbar">
-          <span>Cite this work</span>
-          <button id="copy-bibtex" type="button"><i class="fa-regular fa-copy"></i><span>Copy</span></button>
-        </div>
-        <pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026scope,
+     </div>
+     <div class="method-block">
+      <h3>
+       MBConv with Spatial-Channel Attention
+      </h3>
+      <figure class="figure">
+       <img alt="MBConv block enhanced with CBAM" src="assets/mbconv_cbam.png"/>
+       <figcaption>
+        CBAM is integrated into the MBConv pathway to perform sequential channel and spatial refinement.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="method-block">
+      <h3>
+       Adaptive Attention BiFPN
+      </h3>
+      <figure class="figure">
+       <img alt="Adaptive Attention BiFPN" src="assets/adaptive_bifpn.png"/>
+       <figcaption>
+        Channel-wise attention gating is applied at the feature-fusion nodes to adaptively weight multi-scale representations.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="method-block">
+      <h3>
+       Prediction Head
+      </h3>
+      <figure class="figure">
+       <img alt="SCOPE prediction head" src="assets/prediction_head.jpg"/>
+       <figcaption>
+        Shared classification and box-regression heads operate on the fused feature pyramid and are optimized through a multi-task objective.
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+   </section>
+   <section class="section alt" id="results">
+    <div class="container content-wide">
+     <h2>
+      Results
+     </h2>
+     <p class="results-summary">
+      Across the compound model scales, SCOPE consistently improves the accuracy&ndash;efficiency trade-off over EfficientDet. The gains are especially pronounced in lightweight models, where spatial-channel refinement recovers discriminative information lost through backbone downsampling, while the adaptive single-layer fusion design reduces redundant computation. At larger scales, the latency and FLOPs savings become increasingly substantial because SCOPE avoids stacking progressively deeper BiFPN modules. The in-domain and cross-domain results on BDD100K and nuScenes further indicate that the proposed feature refinement and adaptive fusion mechanisms remain effective under changes in scene distribution.
+     </p>
+     <h3 class="result-category-title">
+      Quantitative Results
+     </h3>
+     <div class="result-block">
+      <h3>
+       Udacity Compound-Scaling Evaluation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table dense-table">
+        <thead>
+         <tr>
+          <th rowspan="2">
+           Scale
+           <br/>
+           <span class="math">
+            &phi;
+           </span>
+          </th>
+          <th rowspan="2">
+           Input Resolution
+          </th>
+          <th rowspan="2">
+           Model
+          </th>
+          <th colspan="2">
+           BiFPN / Adaptive Fusion
+          </th>
+          <th rowspan="2">
+           Box/Class
+           <br/>
+           #layers
+          </th>
+          <th colspan="3">
+           Detection Accuracy
+          </th>
+          <th rowspan="2">
+           Params (M) &darr;
+          </th>
+          <th rowspan="2">
+           FLOPs (B) &darr;
+          </th>
+          <th rowspan="2">
+           Latency (s) &darr;
+          </th>
+         </tr>
+         <tr>
+          <th>
+           #channels
+          </th>
+          <th>
+           #layers
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="2">
+           0
+          </td>
+          <td rowspan="2">
+           512
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td rowspan="2">
+           64
+          </td>
+          <td>
+           3
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           66.41
+          </td>
+          <td>
+           54.15
+          </td>
+          <td>
+           52.32
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           2.55
+          </td>
+          <td>
+           0.0810
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           68.32
+          </td>
+          <td>
+           56.22
+          </td>
+          <td>
+           54.41
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.91
+          </td>
+          <td>
+           0.0782
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           1
+          </td>
+          <td rowspan="2">
+           640
+          </td>
+          <td>
+           EfficientDet-D1
+          </td>
+          <td rowspan="2">
+           88
+          </td>
+          <td>
+           4
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           72.15
+          </td>
+          <td>
+           58.09
+          </td>
+          <td>
+           56.19
+          </td>
+          <td>
+           4.31
+          </td>
+          <td>
+           4.88
+          </td>
+          <td>
+           0.0868
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S1
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           73.60
+          </td>
+          <td>
+           59.59
+          </td>
+          <td>
+           57.78
+          </td>
+          <td>
+           3.57
+          </td>
+          <td>
+           4.12
+          </td>
+          <td>
+           0.0813
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           2
+          </td>
+          <td rowspan="2">
+           768
+          </td>
+          <td>
+           EfficientDet-D2
+          </td>
+          <td rowspan="2">
+           112
+          </td>
+          <td>
+           5
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           75.88
+          </td>
+          <td>
+           60.62
+          </td>
+          <td>
+           58.65
+          </td>
+          <td>
+           4.98
+          </td>
+          <td>
+           9.61
+          </td>
+          <td>
+           0.0943
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S2
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           76.86
+          </td>
+          <td>
+           61.62
+          </td>
+          <td>
+           59.89
+          </td>
+          <td>
+           4.29
+          </td>
+          <td>
+           8.62
+          </td>
+          <td>
+           0.0856
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td rowspan="2">
+           896
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td rowspan="2">
+           160
+          </td>
+          <td>
+           6
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           78.32
+          </td>
+          <td>
+           62.27
+          </td>
+          <td>
+           60.42
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           19.22
+          </td>
+          <td>
+           0.1042
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           79.00
+          </td>
+          <td>
+           62.96
+          </td>
+          <td>
+           61.05
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.75
+          </td>
+          <td>
+           0.0913
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           4
+          </td>
+          <td rowspan="2">
+           1024
+          </td>
+          <td>
+           EfficientDet-D4
+          </td>
+          <td rowspan="2">
+           224
+          </td>
+          <td>
+           7
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           79.91
+          </td>
+          <td>
+           63.33
+          </td>
+          <td>
+           61.45
+          </td>
+          <td>
+           9.25
+          </td>
+          <td>
+           38.72
+          </td>
+          <td>
+           0.1171
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S4
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           80.41
+          </td>
+          <td>
+           63.83
+          </td>
+          <td>
+           62.01
+          </td>
+          <td>
+           8.96
+          </td>
+          <td>
+           36.27
+          </td>
+          <td>
+           0.0987
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td rowspan="2">
+           1280
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td rowspan="2">
+           288
+          </td>
+          <td>
+           7
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           80.95
+          </td>
+          <td>
+           63.99
+          </td>
+          <td>
+           62.11
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           88.30
+          </td>
+          <td>
+           0.1340
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           81.14
+          </td>
+          <td>
+           64.19
+          </td>
+          <td>
+           62.49
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           81.89
+          </td>
+          <td>
+           0.1081
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           6
+          </td>
+          <td rowspan="2">
+           1280
+          </td>
+          <td>
+           EfficientDet-D6
+          </td>
+          <td rowspan="2">
+           384
+          </td>
+          <td>
+           8
+          </td>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           81.62
+          </td>
+          <td>
+           64.41
+          </td>
+          <td>
+           62.66
+          </td>
+          <td>
+           29.86
+          </td>
+          <td>
+           178.67
+          </td>
+          <td>
+           0.1661
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S6
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           81.68
+          </td>
+          <td>
+           64.47
+          </td>
+          <td>
+           62.71
+          </td>
+          <td>
+           27.44
+          </td>
+          <td>
+           145.24
+          </td>
+          <td>
+           0.1217
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           7
+          </td>
+          <td rowspan="2">
+           1536
+          </td>
+          <td>
+           EfficientDet-D7
+          </td>
+          <td rowspan="2">
+           384
+          </td>
+          <td>
+           8
+          </td>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           82.04
+          </td>
+          <td>
+           64.78
+          </td>
+          <td>
+           63.09
+          </td>
+          <td>
+           51.11
+          </td>
+          <td>
+           321.82
+          </td>
+          <td>
+           0.1850
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S7
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           81.97
+          </td>
+          <td>
+           64.68
+          </td>
+          <td>
+           62.98
+          </td>
+          <td>
+           46.51
+          </td>
+          <td>
+           258.25
+          </td>
+          <td>
+           0.1382
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <div class="figure-grid two-col">
+       <figure class="figure compact">
+        <img alt="Udacity accuracy versus FLOPs and latency" src="assets/curve_udacity.png"/>
+       </figure>
+       <figure class="figure compact">
+        <img alt="Relative improvements on Udacity" src="assets/improvement_udacity.png"/>
+       </figure>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       KITTI Compound-Scaling Evaluation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table dense-table">
+        <thead>
+         <tr>
+          <th rowspan="2">
+           Scale
+           <br/>
+           <span class="math">
+            &phi;
+           </span>
+          </th>
+          <th rowspan="2">
+           Input Resolution
+          </th>
+          <th rowspan="2">
+           Model
+          </th>
+          <th colspan="2">
+           BiFPN / Adaptive Fusion
+          </th>
+          <th rowspan="2">
+           Box/Class
+           <br/>
+           #layers
+          </th>
+          <th colspan="3">
+           Detection Accuracy
+          </th>
+          <th rowspan="2">
+           Params (M) &darr;
+          </th>
+          <th rowspan="2">
+           FLOPs (B) &darr;
+          </th>
+          <th rowspan="2">
+           Latency (s) &darr;
+          </th>
+         </tr>
+         <tr>
+          <th>
+           #channels
+          </th>
+          <th>
+           #layers
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="2">
+           0
+          </td>
+          <td rowspan="2">
+           512
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td rowspan="2">
+           64
+          </td>
+          <td>
+           3
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           71.32
+          </td>
+          <td>
+           59.09
+          </td>
+          <td>
+           57.23
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           1.67
+          </td>
+          <td>
+           0.0718
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           73.12
+          </td>
+          <td>
+           62.53
+          </td>
+          <td>
+           60.31
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.21
+          </td>
+          <td>
+           0.0691
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           1
+          </td>
+          <td rowspan="2">
+           640
+          </td>
+          <td>
+           EfficientDet-D1
+          </td>
+          <td rowspan="2">
+           88
+          </td>
+          <td>
+           4
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           77.23
+          </td>
+          <td>
+           64.07
+          </td>
+          <td>
+           61.17
+          </td>
+          <td>
+           4.31
+          </td>
+          <td>
+           3.57
+          </td>
+          <td>
+           0.0776
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S1
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           79.55
+          </td>
+          <td>
+           65.46
+          </td>
+          <td>
+           63.83
+          </td>
+          <td>
+           3.57
+          </td>
+          <td>
+           2.81
+          </td>
+          <td>
+           0.0724
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           2
+          </td>
+          <td rowspan="2">
+           768
+          </td>
+          <td>
+           EfficientDet-D2
+          </td>
+          <td rowspan="2">
+           112
+          </td>
+          <td>
+           5
+          </td>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           80.59
+          </td>
+          <td>
+           66.68
+          </td>
+          <td>
+           63.62
+          </td>
+          <td>
+           4.98
+          </td>
+          <td>
+           7.30
+          </td>
+          <td>
+           0.0852
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S2
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           82.81
+          </td>
+          <td>
+           67.71
+          </td>
+          <td>
+           65.90
+          </td>
+          <td>
+           4.29
+          </td>
+          <td>
+           6.35
+          </td>
+          <td>
+           0.0768
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td rowspan="2">
+           896
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td rowspan="2">
+           160
+          </td>
+          <td>
+           6
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           83.53
+          </td>
+          <td>
+           67.67
+          </td>
+          <td>
+           65.41
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           17.89
+          </td>
+          <td>
+           0.0951
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           85.29
+          </td>
+          <td>
+           68.82
+          </td>
+          <td>
+           67.28
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           15.44
+          </td>
+          <td>
+           0.0825
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           4
+          </td>
+          <td rowspan="2">
+           1024
+          </td>
+          <td>
+           EfficientDet-D4
+          </td>
+          <td rowspan="2">
+           224
+          </td>
+          <td>
+           7
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           84.80
+          </td>
+          <td>
+           68.35
+          </td>
+          <td>
+           66.32
+          </td>
+          <td>
+           9.25
+          </td>
+          <td>
+           36.41
+          </td>
+          <td>
+           0.1081
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S4
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           86.53
+          </td>
+          <td>
+           69.81
+          </td>
+          <td>
+           68.10
+          </td>
+          <td>
+           8.96
+          </td>
+          <td>
+           34.00
+          </td>
+          <td>
+           0.0899
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td rowspan="2">
+           1280
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td rowspan="2">
+           288
+          </td>
+          <td>
+           7
+          </td>
+          <td rowspan="2">
+           4
+          </td>
+          <td>
+           85.83
+          </td>
+          <td>
+           69.82
+          </td>
+          <td>
+           67.21
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           86.01
+          </td>
+          <td>
+           0.1251
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           87.21
+          </td>
+          <td>
+           70.17
+          </td>
+          <td>
+           68.51
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           79.56
+          </td>
+          <td>
+           0.0997
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           6
+          </td>
+          <td rowspan="2">
+           1280
+          </td>
+          <td>
+           EfficientDet-D6
+          </td>
+          <td rowspan="2">
+           384
+          </td>
+          <td>
+           8
+          </td>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           86.42
+          </td>
+          <td>
+           69.38
+          </td>
+          <td>
+           67.57
+          </td>
+          <td>
+           29.86
+          </td>
+          <td>
+           176.37
+          </td>
+          <td>
+           0.1474
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S6
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           87.65
+          </td>
+          <td>
+           70.44
+          </td>
+          <td>
+           68.67
+          </td>
+          <td>
+           27.44
+          </td>
+          <td>
+           143.96
+          </td>
+          <td>
+           0.1125
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           7
+          </td>
+          <td rowspan="2">
+           1536
+          </td>
+          <td>
+           EfficientDet-D7
+          </td>
+          <td rowspan="2">
+           384
+          </td>
+          <td>
+           8
+          </td>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           87.42
+          </td>
+          <td>
+           69.81
+          </td>
+          <td>
+           67.91
+          </td>
+          <td>
+           51.11
+          </td>
+          <td>
+           319.51
+          </td>
+          <td>
+           0.1765
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S7
+          </td>
+          <td>
+           1
+          </td>
+          <td>
+           88.16
+          </td>
+          <td>
+           70.65
+          </td>
+          <td>
+           68.84
+          </td>
+          <td>
+           46.51
+          </td>
+          <td>
+           256.93
+          </td>
+          <td>
+           0.1292
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <div class="figure-grid two-col">
+       <figure class="figure compact">
+        <img alt="KITTI accuracy versus FLOPs and latency" src="assets/curve_kitti.png"/>
+       </figure>
+       <figure class="figure compact">
+        <img alt="Relative improvements on KITTI" src="assets/improvement_kitti.png"/>
+       </figure>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Precision-Recall Analysis
+      </h3>
+      <figure class="figure medium-figure">
+       <img alt="Precision-recall curves" src="assets/precision_recall.png"/>
+      </figure>
+     </div>
+     <div class="result-block">
+      <h3>
+       In-Domain Evaluation on BDD100K and nuScenes
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Dataset
+          </th>
+          <th>
+           Scale
+          </th>
+          <th>
+           Model
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="6">
+           <strong>
+            BDD100K
+           </strong>
+          </td>
+          <td rowspan="2">
+           0
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td>
+           63.88
+          </td>
+          <td>
+           50.94
+          </td>
+          <td>
+           49.03
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           2.21
+          </td>
+          <td>
+           0.0802
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           65.91
+          </td>
+          <td>
+           53.02
+          </td>
+          <td>
+           51.27
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.78
+          </td>
+          <td>
+           0.0749
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           75.96
+          </td>
+          <td>
+           60.31
+          </td>
+          <td>
+           58.44
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           18.62
+          </td>
+          <td>
+           0.1036
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           77.84
+          </td>
+          <td>
+           62.17
+          </td>
+          <td>
+           60.65
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.14
+          </td>
+          <td>
+           0.0905
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td>
+           79.44
+          </td>
+          <td>
+           62.52
+          </td>
+          <td>
+           60.83
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           87.93
+          </td>
+          <td>
+           0.1322
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           80.21
+          </td>
+          <td>
+           63.40
+          </td>
+          <td>
+           61.96
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           81.34
+          </td>
+          <td>
+           0.1061
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="6">
+           <strong>
+            nuScenes
+           </strong>
+          </td>
+          <td rowspan="2">
+           0
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td>
+           61.75
+          </td>
+          <td>
+           48.86
+          </td>
+          <td>
+           46.71
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           1.86
+          </td>
+          <td>
+           0.0753
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           63.67
+          </td>
+          <td>
+           50.95
+          </td>
+          <td>
+           48.92
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.46
+          </td>
+          <td>
+           0.0710
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           73.48
+          </td>
+          <td>
+           58.77
+          </td>
+          <td>
+           56.64
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           18.48
+          </td>
+          <td>
+           0.0995
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           75.36
+          </td>
+          <td>
+           60.58
+          </td>
+          <td>
+           58.73
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.02
+          </td>
+          <td>
+           0.0889
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td>
+           77.81
+          </td>
+          <td>
+           61.39
+          </td>
+          <td>
+           59.62
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           86.64
+          </td>
+          <td>
+           0.1298
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           78.54
+          </td>
+          <td>
+           62.15
+          </td>
+          <td>
+           60.48
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           80.11
+          </td>
+          <td>
+           0.1027
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Cross-Domain Generalization
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Testing Dataset
+          </th>
+          <th>
+           Scale
+          </th>
+          <th>
+           Model
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="6">
+           <strong>
+            BDD100K
+           </strong>
+          </td>
+          <td rowspan="2">
+           0
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td>
+           54.91
+          </td>
+          <td>
+           41.26
+          </td>
+          <td>
+           39.14
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           2.24
+          </td>
+          <td>
+           0.0817
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           57.02
+          </td>
+          <td>
+           43.08
+          </td>
+          <td>
+           41.35
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.81
+          </td>
+          <td>
+           0.0756
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           61.25
+          </td>
+          <td>
+           46.92
+          </td>
+          <td>
+           44.84
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           18.64
+          </td>
+          <td>
+           0.1036
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           63.61
+          </td>
+          <td>
+           48.84
+          </td>
+          <td>
+           47.06
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.17
+          </td>
+          <td>
+           0.0913
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td>
+           65.38
+          </td>
+          <td>
+           49.87
+          </td>
+          <td>
+           47.66
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           88.12
+          </td>
+          <td>
+           0.1337
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           66.84
+          </td>
+          <td>
+           51.02
+          </td>
+          <td>
+           49.18
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           81.58
+          </td>
+          <td>
+           0.1079
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="6">
+           <strong>
+            nuScenes
+           </strong>
+          </td>
+          <td rowspan="2">
+           0
+          </td>
+          <td>
+           EfficientDet-D0
+          </td>
+          <td>
+           52.74
+          </td>
+          <td>
+           39.18
+          </td>
+          <td>
+           36.91
+          </td>
+          <td>
+           3.94
+          </td>
+          <td>
+           1.92
+          </td>
+          <td>
+           0.0768
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S0
+          </td>
+          <td>
+           54.62
+          </td>
+          <td>
+           40.95
+          </td>
+          <td>
+           38.88
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.49
+          </td>
+          <td>
+           0.0719
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           3
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           59.84
+          </td>
+          <td>
+           44.71
+          </td>
+          <td>
+           42.67
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           18.53
+          </td>
+          <td>
+           0.1029
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S3
+          </td>
+          <td>
+           62.02
+          </td>
+          <td>
+           46.39
+          </td>
+          <td>
+           44.81
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.08
+          </td>
+          <td>
+           0.0907
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           5
+          </td>
+          <td>
+           EfficientDet-D5
+          </td>
+          <td>
+           63.11
+          </td>
+          <td>
+           47.08
+          </td>
+          <td>
+           44.93
+          </td>
+          <td>
+           16.71
+          </td>
+          <td>
+           86.83
+          </td>
+          <td>
+           0.1308
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           SCOPE-S5
+          </td>
+          <td>
+           64.36
+          </td>
+          <td>
+           48.11
+          </td>
+          <td>
+           46.27
+          </td>
+          <td>
+           16.62
+          </td>
+          <td>
+           80.29
+          </td>
+          <td>
+           0.1041
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <h3 class="result-category-title">
+      Ablation Studies
+     </h3>
+     <div class="result-block">
+      <h3>
+       Fusion Strategy Ablation on Udacity
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Backbone
+          </th>
+          <th>
+           Fusion Method
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           FPN
+          </td>
+          <td>
+           59.77
+          </td>
+          <td>
+           52.98
+          </td>
+          <td>
+           51.04
+          </td>
+          <td>
+           2.87
+          </td>
+          <td>
+           1.76
+          </td>
+          <td>
+           0.0739
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           StairNet
+          </td>
+          <td>
+           60.22
+          </td>
+          <td>
+           53.34
+          </td>
+          <td>
+           51.66
+          </td>
+          <td>
+           3.73
+          </td>
+          <td>
+           2.24
+          </td>
+          <td>
+           0.0811
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           BiFPN (D
+           <sub>
+            bifpn
+           </sub>
+           =3)
+          </td>
+          <td>
+           66.41
+          </td>
+          <td>
+           54.15
+          </td>
+          <td>
+           52.32
+          </td>
+          <td>
+           4.22
+          </td>
+          <td>
+           2.94
+          </td>
+          <td>
+           0.0891
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           Adaptive Fusion (D
+           <sub>
+            bifpn
+           </sub>
+           =1)
+          </td>
+          <td>
+           68.32
+          </td>
+          <td>
+           56.22
+          </td>
+          <td>
+           54.41
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.91
+          </td>
+          <td>
+           0.0782
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Fusion Strategy Ablation on KITTI
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Backbone
+          </th>
+          <th>
+           Fusion Method
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           FPN
+          </td>
+          <td>
+           66.57
+          </td>
+          <td>
+           53.48
+          </td>
+          <td>
+           52.18
+          </td>
+          <td>
+           2.87
+          </td>
+          <td>
+           1.03
+          </td>
+          <td>
+           0.0599
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           StairNet
+          </td>
+          <td>
+           67.78
+          </td>
+          <td>
+           53.50
+          </td>
+          <td>
+           52.27
+          </td>
+          <td>
+           3.73
+          </td>
+          <td>
+           1.54
+          </td>
+          <td>
+           0.0673
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           BiFPN (D
+           <sub>
+            bifpn
+           </sub>
+           =3)
+          </td>
+          <td>
+           71.15
+          </td>
+          <td>
+           58.72
+          </td>
+          <td>
+           56.87
+          </td>
+          <td>
+           4.22
+          </td>
+          <td>
+           2.17
+          </td>
+          <td>
+           0.0801
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           EfficientNet-B0 + CBAM
+          </td>
+          <td>
+           Adaptive Fusion (D
+           <sub>
+            bifpn
+           </sub>
+           =1)
+          </td>
+          <td>
+           72.98
+          </td>
+          <td>
+           61.18
+          </td>
+          <td>
+           59.02
+          </td>
+          <td>
+           3.16
+          </td>
+          <td>
+           1.14
+          </td>
+          <td>
+           0.0727
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Component-Wise Contribution Analysis
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           CBAM
+          </th>
+          <th>
+           Adaptive Fusion
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           &cross;
+          </td>
+          <td>
+           &cross;
+          </td>
+          <td>
+           78.32
+          </td>
+          <td>
+           62.27
+          </td>
+          <td>
+           60.42
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           19.22
+          </td>
+          <td>
+           0.1042
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &checkmark;
+          </td>
+          <td>
+           &cross;
+          </td>
+          <td>
+           78.71
+          </td>
+          <td>
+           62.61
+          </td>
+          <td>
+           60.76
+          </td>
+          <td>
+           6.58
+          </td>
+          <td>
+           19.68
+          </td>
+          <td>
+           0.1071
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &cross;
+          </td>
+          <td>
+           &checkmark;
+          </td>
+          <td>
+           78.63
+          </td>
+          <td>
+           62.58
+          </td>
+          <td>
+           60.71
+          </td>
+          <td>
+           5.87
+          </td>
+          <td>
+           17.46
+          </td>
+          <td>
+           0.0895
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           &checkmark;
+          </td>
+          <td>
+           &checkmark;
+          </td>
+          <td>
+           79.00
+          </td>
+          <td>
+           62.96
+          </td>
+          <td>
+           61.05
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.75
+          </td>
+          <td>
+           0.0913
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <h3 class="result-category-title">
+      State-of-the-Art Comparison
+     </h3>
+     <div class="result-block">
+      <h3>
+       Comparison with State-of-the-Art Detectors on Udacity
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table sota-table">
+        <thead>
+         <tr>
+          <th>
+           Backbone + Fusion
+          </th>
+          <th>
+           Detector
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           MobileNet-v2 + FPN
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           62.57
+          </td>
+          <td>
+           48.98
+          </td>
+          <td>
+           47.18
+          </td>
+          <td>
+           23.44
+          </td>
+          <td>
+           52.74
+          </td>
+          <td>
+           0.0803
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet50
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           64.78
+          </td>
+          <td>
+           54.34
+          </td>
+          <td>
+           52.61
+          </td>
+          <td>
+           41.42
+          </td>
+          <td>
+           98.21
+          </td>
+          <td>
+           0.1492
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet101 + FPN
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           74.62
+          </td>
+          <td>
+           61.83
+          </td>
+          <td>
+           60.09
+          </td>
+          <td>
+           63.27
+          </td>
+          <td>
+           161.42
+          </td>
+          <td>
+           0.2140
+          </td>
+         </tr>
+         <tr>
+          <td>
+           MobileNet-v2 + StairNet
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           60.09
+          </td>
+          <td>
+           42.75
+          </td>
+          <td>
+           40.92
+          </td>
+          <td>
+           7.24
+          </td>
+          <td>
+           6.01
+          </td>
+          <td>
+           0.0351
+          </td>
+         </tr>
+         <tr>
+          <td>
+           MobileNet-v2 + FPN
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           64.51
+          </td>
+          <td>
+           44.94
+          </td>
+          <td>
+           42.12
+          </td>
+          <td>
+           6.99
+          </td>
+          <td>
+           4.26
+          </td>
+          <td>
+           0.0416
+          </td>
+         </tr>
+         <tr>
+          <td>
+           VGG16 + StairNet
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           65.67
+          </td>
+          <td>
+           45.78
+          </td>
+          <td>
+           43.93
+          </td>
+          <td>
+           32.22
+          </td>
+          <td>
+           84.99
+          </td>
+          <td>
+           0.0513
+          </td>
+         </tr>
+         <tr>
+          <td>
+           VGG16 + FPN
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           72.44
+          </td>
+          <td>
+           46.59
+          </td>
+          <td>
+           44.71
+          </td>
+          <td>
+           31.83
+          </td>
+          <td>
+           82.11
+          </td>
+          <td>
+           0.0507
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet50 + FPN
+          </td>
+          <td>
+           RetinaNet
+          </td>
+          <td>
+           76.25
+          </td>
+          <td>
+           52.55
+          </td>
+          <td>
+           50.77
+          </td>
+          <td>
+           34.924
+          </td>
+          <td>
+           96.83
+          </td>
+          <td>
+           0.0997
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B3 + BiFPN
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           78.32
+          </td>
+          <td>
+           62.27
+          </td>
+          <td>
+           60.42
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           19.22
+          </td>
+          <td>
+           0.1042
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &mdash;
+          </td>
+          <td>
+           DETR (original)
+          </td>
+          <td>
+           68.72
+          </td>
+          <td>
+           57.14
+          </td>
+          <td>
+           55.35
+          </td>
+          <td>
+           41.82
+          </td>
+          <td>
+           100.49
+          </td>
+          <td>
+           0.1475
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &mdash;
+          </td>
+          <td>
+           YOLOv3
+          </td>
+          <td>
+           62.38
+          </td>
+          <td>
+           50.83
+          </td>
+          <td>
+           48.95
+          </td>
+          <td>
+           7.55
+          </td>
+          <td>
+           70.78
+          </td>
+          <td>
+           0.0253
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           EfficientNet-B3 + CBAM + Adaptive Attention Fusion
+          </td>
+          <td>
+           SCOPE
+          </td>
+          <td>
+           79.00
+          </td>
+          <td>
+           62.96
+          </td>
+          <td>
+           61.05
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           17.75
+          </td>
+          <td>
+           0.0913
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Comparison with State-of-the-Art Detectors on KITTI
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table sota-table">
+        <thead>
+         <tr>
+          <th>
+           Backbone + Fusion
+          </th>
+          <th>
+           Detector
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP
+           <sub>
+            0.75
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           mAP &uarr;
+          </th>
+          <th>
+           Params (M) &darr;
+          </th>
+          <th>
+           FLOPs (B) &darr;
+          </th>
+          <th>
+           Latency (s) &darr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           MobileNet-v2 + FPN
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           69.23
+          </td>
+          <td>
+           49.08
+          </td>
+          <td>
+           47.79
+          </td>
+          <td>
+           23.44
+          </td>
+          <td>
+           50.45
+          </td>
+          <td>
+           0.0723
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet50
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           69.78
+          </td>
+          <td>
+           55.33
+          </td>
+          <td>
+           53.43
+          </td>
+          <td>
+           41.42
+          </td>
+          <td>
+           96.88
+          </td>
+          <td>
+           0.1245
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet101 + FPN
+          </td>
+          <td>
+           Faster R-CNN
+          </td>
+          <td>
+           75.84
+          </td>
+          <td>
+           59.98
+          </td>
+          <td>
+           58.14
+          </td>
+          <td>
+           63.27
+          </td>
+          <td>
+           158.72
+          </td>
+          <td>
+           0.1992
+          </td>
+         </tr>
+         <tr>
+          <td>
+           MobileNet-v2 + StairNet
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           62.22
+          </td>
+          <td>
+           43.21
+          </td>
+          <td>
+           41.39
+          </td>
+          <td>
+           7.24
+          </td>
+          <td>
+           5.32
+          </td>
+          <td>
+           0.0249
+          </td>
+         </tr>
+         <tr>
+          <td>
+           MobileNet-v2 + FPN
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           65.02
+          </td>
+          <td>
+           45.84
+          </td>
+          <td>
+           44.00
+          </td>
+          <td>
+           6.99
+          </td>
+          <td>
+           3.70
+          </td>
+          <td>
+           0.0211
+          </td>
+         </tr>
+         <tr>
+          <td>
+           VGG16 + StairNet
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           67.17
+          </td>
+          <td>
+           46.42
+          </td>
+          <td>
+           44.52
+          </td>
+          <td>
+           32.22
+          </td>
+          <td>
+           82.91
+          </td>
+          <td>
+           0.0404
+          </td>
+         </tr>
+         <tr>
+          <td>
+           VGG16 + FPN
+          </td>
+          <td>
+           SSD
+          </td>
+          <td>
+           67.67
+          </td>
+          <td>
+           47.64
+          </td>
+          <td>
+           45.76
+          </td>
+          <td>
+           31.83
+          </td>
+          <td>
+           80.61
+          </td>
+          <td>
+           0.0412
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ResNet50 + FPN
+          </td>
+          <td>
+           RetinaNet
+          </td>
+          <td>
+           73.38
+          </td>
+          <td>
+           52.34
+          </td>
+          <td>
+           50.42
+          </td>
+          <td>
+           34.924
+          </td>
+          <td>
+           93.66
+          </td>
+          <td>
+           0.0870
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EfficientNet-B3 + BiFPN
+          </td>
+          <td>
+           EfficientDet-D3
+          </td>
+          <td>
+           85.53
+          </td>
+          <td>
+           67.67
+          </td>
+          <td>
+           65.41
+          </td>
+          <td>
+           6.42
+          </td>
+          <td>
+           16.73
+          </td>
+          <td>
+           0.0801
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &mdash;
+          </td>
+          <td>
+           DETR (Original)
+          </td>
+          <td>
+           79.51
+          </td>
+          <td>
+           58.70
+          </td>
+          <td>
+           56.83
+          </td>
+          <td>
+           41.82
+          </td>
+          <td>
+           97.64
+          </td>
+          <td>
+           0.1135
+          </td>
+         </tr>
+         <tr>
+          <td>
+           &mdash;
+          </td>
+          <td>
+           YOLOv3
+          </td>
+          <td>
+           65.05
+          </td>
+          <td>
+           52.69
+          </td>
+          <td>
+           49.84
+          </td>
+          <td>
+           7.55
+          </td>
+          <td>
+           67.99
+          </td>
+          <td>
+           0.0122
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           EfficientNet-B3 + CBAM + Adaptive Attention Fusion
+          </td>
+          <td>
+           SCOPE
+          </td>
+          <td>
+           85.29
+          </td>
+          <td>
+           68.82
+          </td>
+          <td>
+           67.28
+          </td>
+          <td>
+           5.94
+          </td>
+          <td>
+           14.93
+          </td>
+          <td>
+           0.0754
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <h3 class="result-category-title">
+      Qualitative Results
+     </h3>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       Udacity Self-Driving Car
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Qualitative comparison on the Udacity Self-Driving Car dataset" src="assets/qualitative_udacity.png"/>
+       <figcaption>
+        Figure 12. Detection boxes and Grad-CAM++ responses for the top five methods on Udacity.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       KITTI
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Qualitative comparison on KITTI" src="assets/qualitative_kitti.png"/>
+       <figcaption>
+        Figure 13. Detection boxes and Grad-CAM++ responses for the top five methods on KITTI.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       BDD100K
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Qualitative comparison on BDD100K" src="assets/qualitative_bdd100k.png"/>
+       <figcaption>
+        Figure 14. Detection boxes and Grad-CAM++ responses for the top five methods on BDD100K.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       nuScenes
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Qualitative comparison on nuScenes" src="assets/qualitative_nuscenes.png"/>
+       <figcaption>
+        Figure 15. Detection boxes and Grad-CAM++ responses for the top five methods on nuScenes.
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="datasets">
+    <div class="container content-wide">
+     <h2>
+      Datasets
+     </h2>
+     <ul class="dataset-list">
+      <li>
+       <strong>
+        Udacity Self-Driving Car Dataset:
+       </strong>
+       primary training and evaluation benchmark for compound scaling and comparison with state-of-the-art detectors.
+      </li>
+      <li>
+       <strong>
+        KITTI:
+       </strong>
+       validation benchmark used to assess the proposed architecture across scales and evaluate precision-recall behavior.
+      </li>
+      <li>
+       <strong>
+        BDD100K:
+       </strong>
+       used for both in-domain experiments and cross-domain evaluation of models trained exclusively on Udacity.
+      </li>
+      <li>
+       <strong>
+        nuScenes:
+       </strong>
+       used to assess generalization to a different autonomous-driving data distribution without target-domain fine-tuning.
+      </li>
+     </ul>
+    </div>
+   </section>
+   <section class="section alt" id="bibtex">
+    <div class="container content-wide">
+     <h2>
+      BibTeX
+     </h2>
+     <div class="bibtex-toolbar">
+      <span>
+       Cite this work
+      </span>
+      <button id="copy-bibtex" type="button">
+       <i class="fa-regular fa-copy">
+       </i>
+       <span>
+        Copy
+       </span>
+      </button>
+     </div>
+     <pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026scope,
   title   = {SCOPE: Spatial-Channel Optimization with Efficient Adaptive Fusion for Real-Time Object Detection in Autonomous Vehicles},
   author  = {Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
   journal = {Submitted to IEEE Transactions on Intelligent Transportation Systems},
   year    = {2026}
 }</code></pre>
-      </div>
-    </section>
+    </div>
+   </section>
   </main>
-
   <footer>
-    <p>© 2026 Iman Iraei · <a href="../">Academic Homepage</a> · <a href="https://github.com/imaniraei/SCOPE" target="_blank" rel="noopener">GitHub</a></p>
+   <p>
+    &copy; 2026 Iman Iraei &middot;
+    <a href="../">
+     Academic Homepage
+    </a>
+    &middot;
+    <a href="https://github.com/imaniraei/SCOPE" rel="noopener" target="_blank">
+     GitHub
+    </a>
+   </p>
   </footer>
-
   <script>
-    document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+   document.querySelectorAll("[data-scroll-target]").forEach((button) => {
       button.addEventListener("click", () => {
         const target = document.getElementById(button.dataset.scrollTarget);
         if (target) target.scrollIntoView({ behavior: "smooth" });
@@ -341,5 +3474,5 @@
       }
     });
   </script>
-</body>
+ </body>
 </html>
