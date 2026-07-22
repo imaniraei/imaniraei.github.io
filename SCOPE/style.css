@@ -858,3 +858,69 @@ a.venue-logo:focus-visible {
     width: 100% !important;
   }
 }
+
+
+/* =========================================================
+   V7 figure corrections
+   ========================================================= */
+
+figure,
+.figure,
+.figure img,
+.figure.compact,
+.figure.compact img,
+.medium-figure,
+.medium-figure img,
+.method-block .figure,
+.method-block .figure img,
+.result-block .figure,
+.result-block .figure img,
+.qualitative-figure,
+.qualitative-figure img,
+.overview-main-figure,
+.overview-main-figure img {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  outline: none !important;
+}
+
+.overview-main-figure {
+  width: min(1000px, 100%) !important;
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.qualitative-result-block {
+  width: min(1080px, 100%) !important;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.qualitative-figure {
+  width: min(1080px, 100%) !important;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.qualitative-figure img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 900px) {
+
+  .overview-main-figure,
+  .qualitative-result-block,
+  .qualitative-figure {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
