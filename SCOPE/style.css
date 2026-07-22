@@ -924,3 +924,68 @@ figure,
     max-width: 100% !important;
   }
 }
+
+
+/* =========================================================
+   V8 exact figure sizing
+   ========================================================= */
+
+/* Figure 1 (Overview): larger */
+.overview-main-figure {
+  width: min(1080px, 100%) !important;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Figures 2 and 3 (MBConv-CBAM and Adaptive BiFPN): smaller */
+.method-figure-small {
+  width: min(640px, 100%) !important;
+  max-width: 640px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Final four qualitative figures: larger */
+.qualitative-result-block {
+  width: min(1180px, 100%) !important;
+  max-width: 1180px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.qualitative-figure {
+  width: min(1180px, 100%) !important;
+  max-width: 1180px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.qualitative-figure img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Keep all figure backgrounds seamless */
+.figure img,
+.overview-main-figure img,
+.method-figure-small img,
+.qualitative-figure img {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+@media (max-width: 900px) {
+
+  .overview-main-figure,
+  .method-figure-small,
+  .qualitative-result-block,
+  .qualitative-figure {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
