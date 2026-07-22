@@ -411,7 +411,7 @@ footer p {
 
 /* Figure 2: slightly smaller. */
 .method-figure {
-  width: min(640px, 100%);
+  width: min(440px, 100%);
 }
 
 /* Keep result figures at their current controlled size. */
