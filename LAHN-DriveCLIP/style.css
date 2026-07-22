@@ -406,12 +406,12 @@ footer p {
 
 /* Figure 1: slightly larger. */
 .overview-figure {
-  width: min(1420px, 100%);
+  width: min(1020px, 100%);
 }
 
 /* Figure 2: slightly smaller. */
 .method-figure {
-  width: min(440px, 100%);
+  width: min(640px, 100%);
 }
 
 /* Keep result figures at their current controlled size. */
@@ -424,6 +424,56 @@ footer p {
   .overview-figure,
   .method-figure,
   .result-figure {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   Complete Results organization
+   ========================================================= */
+
+.result-category-title {
+  max-width: 1040px;
+  margin: 78px auto 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+  color: var(--text);
+  font-size: 35px;
+  font-weight: 900;
+  text-align: left;
+}
+
+.result-category-title:first-of-type {
+  margin-top: 55px;
+}
+
+.ablation-table {
+  min-width: 900px;
+}
+
+.qualitative-result-block {
+  margin-top: 48px;
+}
+
+.qualitative-figure {
+  width: min(1040px, 100%);
+}
+
+.qualitative-figure img {
+  width: 100%;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .result-category-title {
+    margin-top: 58px;
+    font-size: 29px;
+  }
+
+  .qualitative-figure {
     width: 100%;
   }
 }
