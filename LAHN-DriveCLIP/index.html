@@ -1,72 +1,1924 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving.">
-  <title>LAHN-DriveCLIP | Iman Iraei</title>
-  <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=2">
-</head>
-<body>
-<header class="hero"><div class="hero-inner">
-  <a class="back-link" href="../"><i class="fa-solid fa-arrow-left"></i> Iman Iraei</a>
-  <h1>LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving</h1>
-  <div class="authors">
-    <a class="author-link" href="https://imaniraei.github.io/" target="_blank" rel="noopener">Iman Iraei</a><span>·</span>
-    <a class="author-link" href="https://www.concordia.ca/faculty/omair-ahmad.html" target="_blank" rel="noopener">M. Omair Ahmad<sup>†</sup></a><span>·</span>
-    <a class="author-link" href="https://www.concordia.ca/faculty/srikanta-swamy.html" target="_blank" rel="noopener">M. N. S. Swamy<sup>†</sup></a>
-  </div>
-  <div class="co-senior-note">†Co-senior authors</div>
-  <div class="affiliations"><a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" target="_blank" rel="noopener">Department of Electrical and Computer Engineering</a><span>·</span><a href="https://www.concordia.ca/" target="_blank" rel="noopener">Concordia University</a></div>
-  <div class="action-buttons">
-    <a class="pill" href="#" target="_blank"><i class="fa-solid fa-file-lines"></i><span>Paper</span></a>
-    <a class="pill" href="https://github.com/imaniraei" target="_blank"><i class="fa-brands fa-github"></i><span>Code</span></a>
-    <a class="pill" href="#datasets"><i class="fa-solid fa-database"></i><span>Datasets</span></a>
-    <button class="pill" type="button" data-scroll-target="bibtex"><svg class="bibtex-svg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14 45 8l8 7-8 6-27 6-7-6z"/><path d="M11 21v11l7 6 27-6 8-6V15"/><path d="M18 38v11l7 6 26-7V37l-6-5"/><path d="M25 55 18 49"/></g></svg><span>BibTeX</span></button>
-  </div>
-  <p class="status">Under Review at Robotics and Autonomous Systems</p>
-</div></header>
-<main>
-<section class="section"><div class="container balanced"><h2>Overview</h2><figure class="figure overview-figure"><img src="assets/figure1_overview.png" alt="Overview of LAHN-DriveCLIP"><figcaption>Overview of the LAHN-DriveCLIP training pipeline. Frozen CLIP encoders are adapted with LoRA, while Gaussian CAM alignment and CAM-guided hard negative mining jointly improve localization and retrieval.</figcaption></figure></div></section>
-<section class="section alt" id="abstract"><div class="container balanced"><h2>Abstract</h2><p class="abstract-text">Vision–language models such as CLIP have demonstrated strong zero-shot capabilities by aligning visual and textual representations, yet adapting these models for object localization in autonomous driving remains challenging due to limited annotated data and the lack of dense pixel-level supervision. In this paper, we propose LAHN-DriveCLIP, a localization-aware CLIP adaptation framework designed for weakly supervised vision–language localization in complex driving environments. Our approach leverages low-rank adaptation (LoRA) to efficiently fine-tune CLIP using annotated image–text pairs while keeping the pretrained vision and text encoders frozen. Localization is guided through class activation maps (CAMs) rather than direct bounding-box regression, where coarse bounding-box annotations are converted into Gaussian spatial targets and aligned with CAM responses during training. To further enhance discriminative localization, we introduce CAM-guided hard negative mining, which emphasizes challenging negative image–text pairs based on spatial activation inconsistencies. We train LAHN-DriveCLIP on the Talk2Car dataset using the standard training–evaluation split and further evaluate its generalization across multiple autonomous driving datasets. Experimental results demonstrate that the proposed method consistently improves both object localization and cross-modal retrieval accuracy compared with CLIP-based baselines, while preserving interpretable activation maps and strong vision–language alignment. These findings highlight the effectiveness of parameter-efficient, localization-aware adaptation for autonomous driving scenarios with weak, bounding box–level supervision.</p></div></section>
-<section class="section" id="method"><div class="container balanced"><h2>Method</h2>
-<div class="method-points">
-<p><strong>LoRA-based CLIP adaptation.</strong> The pretrained CLIP vision and text encoders remain frozen, while low-rank adapters are inserted into selected attention projections. This preserves the pretrained cross-modal representation space and restricts learning to a compact set of trainable parameters.</p>
-<p><strong>Gaussian CAM alignment for spatial grounding.</strong> gScoreCAM produces an activation map from the image–text similarity score. Bounding boxes are converted into smooth Gaussian heatmaps, and an L2 alignment loss encourages the activation map to concentrate around the referred object without requiring a box-regression head.</p>
-<p><strong>CAM-guided hard negative mining.</strong> Negative samples are weighted according to the soft-IoU overlap between their activation maps. Spatially confusing negatives therefore receive larger contrastive weights, allowing the model to focus on semantically similar yet spatially misleading image–text pairs.</p>
-<p><strong>Joint localization-aware objective.</strong> The final loss combines CAM-guided contrastive learning with Gaussian CAM alignment, while gradients are propagated exclusively through the LoRA parameters.</p>
-</div>
-<div class="method-block"><h3>LoRA Adaptation of Transformer Projections</h3><figure class="figure method-figure"><img src="assets/figure2_lora.png" alt="Figure 2"><figcaption>Figure 2. Multi-head self-attention with LoRA adaptation applied to the query, key, value, and output projections.</figcaption></figure></div>
-</div></section>
-<section class="section alt" id="results"><div class="container balanced"><h2>Results</h2><p class="results-summary">LAHN-DriveCLIP achieves the strongest cross-modal retrieval and localization performance among the evaluated CLIP-based methods. On Talk2Car, it reaches 92.48% Top-2 image-to-text retrieval and 93.66% Top-2 text-to-image retrieval. For localization, it obtains 61.93% EBPG, 57.74% IoU<sub>0.5</sub>, and 68.02% Point Accuracy. Cross-domain evaluations on BDD-X, KITTI, and Udacity further demonstrate robust generalization under distribution shift.</p>
-<div class="result-block"><h3>Cross-Modal Retrieval</h3><div class="table-wrap"><table class="results-table"><thead><tr><th rowspan="2">Method</th><th colspan="4">Talk2Car</th><th colspan="4">BDD-X</th></tr><tr><th>I→T T1</th><th>I→T T2</th><th>T→I T1</th><th>T→I T2</th><th>I→T T1</th><th>I→T T2</th><th>T→I T1</th><th>T→I T2</th></tr></thead><tbody><tr><td>CLIP</td><td>47.23±0.42</td><td>58.91±0.56</td><td>48.14±0.66</td><td>57.62±0.42</td><td>45.13±0.72</td><td>55.88±0.24</td><td>46.56±0.49</td><td>56.30±0.74</td></tr><tr><td>CLIP Surgery</td><td>78.42±0.51</td><td>88.87±0.43</td><td>78.76±0.59</td><td>88.91±0.48</td><td>77.91±0.64</td><td>87.15±0.38</td><td>78.08±0.52</td><td>88.26±0.46</td></tr><tr class="ours"><td>LAHN-DriveCLIP</td><td>81.36±0.64</td><td>92.48±0.38</td><td>82.27±0.47</td><td>93.66±0.73</td><td>79.28±0.15</td><td>89.02±0.41</td><td>79.34±0.49</td><td>90.26±0.93</td></tr></tbody></table></div></div>
-<div class="result-block"><h3>Localization Performance</h3><div class="table-wrap"><table class="results-table"><thead><tr><th>Dataset</th><th>Method</th><th>EBPG ↑</th><th>IoU<sub>0.5</sub> ↑</th><th>Point Acc ↑</th><th>Params (M)</th><th>FLOPs (G)</th><th>Latency (ms)</th></tr></thead><tbody>
-<tr><td rowspan="3">Talk2Car</td><td>CLIP</td><td>41.20±5.12</td><td>28.45±2.34</td><td>47.13±6.21</td><td>304.3</td><td>188.6</td><td>24.1</td></tr><tr><td>CLIP Surgery</td><td>49.86±4.21</td><td>39.74±2.02</td><td>56.48±5.03</td><td>304.7</td><td>191.2</td><td>26.8</td></tr><tr class="ours"><td>LAHN-DriveCLIP</td><td>61.93±3.58</td><td>57.74±1.55</td><td>68.02±4.11</td><td>306.8</td><td>189.8</td><td>24.6</td></tr>
-<tr><td rowspan="3">BDD-X</td><td>CLIP</td><td>40.72±5.03</td><td>26.94±2.21</td><td>45.80±6.02</td><td>304.7</td><td>188.6</td><td>24.1</td></tr><tr><td>CLIP Surgery</td><td>48.95±4.10</td><td>36.88±1.94</td><td>54.72±4.88</td><td>304.3</td><td>191.2</td><td>26.8</td></tr><tr class="ours"><td>LAHN-DriveCLIP</td><td>58.27±3.41</td><td>49.82±1.76</td><td>63.47±4.03</td><td>306.8</td><td>189.8</td><td>24.6</td></tr>
-<tr><td rowspan="3">KITTI</td><td>CLIP</td><td>38.45±5.27</td><td>24.32±2.35</td><td>43.18±6.11</td><td>304.7</td><td>188.6</td><td>24.1</td></tr><tr><td>CLIP Surgery</td><td>46.73±4.18</td><td>33.91±2.01</td><td>52.07±4.95</td><td>304.3</td><td>191.2</td><td>26.8</td></tr><tr class="ours"><td>LAHN-DriveCLIP</td><td>55.12±3.55</td><td>44.63±1.83</td><td>60.42±4.14</td><td>306.8</td><td>189.8</td><td>24.6</td></tr>
-<tr><td rowspan="3">Udacity</td><td>CLIP</td><td>39.18±5.14</td><td>25.87±2.29</td><td>44.02±6.07</td><td>304.7</td><td>188.6</td><td>24.1</td></tr><tr><td>CLIP Surgery</td><td>47.84±4.16</td><td>35.96±1.97</td><td>53.61±4.91</td><td>304.3</td><td>191.2</td><td>26.8</td></tr><tr class="ours"><td>LAHN-DriveCLIP</td><td>57.09±3.49</td><td>47.38±1.81</td><td>62.44±4.09</td><td>306.8</td><td>189.8</td><td>24.6</td></tr>
-</tbody></table></div></div>
-<div class="result-block"><h3>LoRA Rank and Scaling Analysis</h3><figure class="figure result-figure"><img src="assets/figure3_lora_curves.png" alt="Figure 3"><figcaption>Figure 3. Localization accuracy during training under different LoRA rank and scaling configurations for ViT-L/14 and RN50.</figcaption></figure></div>
-<div class="result-block"><h3>Progressive Component Analysis</h3><figure class="figure result-figure"><img src="assets/figure4_component_ablation.png" alt="Figure 4"><figcaption>Figure 4. Localization accuracy improves progressively as LoRA, CAM alignment, and hard negative mining are introduced.</figcaption></figure></div>
-<div class="result-block"><h3>Average Localization Performance</h3><figure class="figure result-figure"><img src="assets/figure5_average_localization.png" alt="Figure 5"><figcaption>Figure 5. Average EBPG, IoU<sub>0.5</sub>, and Point Accuracy across four autonomous-driving datasets.</figcaption></figure></div>
-<div class="result-block"><h3>Progressive Retrieval Ablation</h3><div class="table-wrap"><table class="results-table"><thead><tr><th rowspan="2">Method</th><th colspan="4">Talk2Car</th><th colspan="4">BDD-X</th></tr><tr><th>I→T T1</th><th>I→T T2</th><th>T→I T1</th><th>T→I T2</th><th>I→T T1</th><th>I→T T2</th><th>T→I T1</th><th>T→I T2</th></tr></thead><tbody><tr><td>CLIP+LoRA</td><td>73.48±0.52</td><td>84.22±0.70</td><td>74.91±0.84</td><td>85.44±0.23</td><td>60.18±0.61</td><td>72.19±0.93</td><td>61.45±0.33</td><td>72.73±0.59</td></tr><tr><td>CLIP+LoRA+CAM</td><td>79.64±0.12</td><td>89.41±0.35</td><td>80.01±0.56</td><td>90.05±0.38</td><td>77.52±1.25</td><td>88.01±0.41</td><td>78.16±0.94</td><td>88.66±1.05</td></tr><tr class="ours"><td>CLIP+LoRA+CAM+HN</td><td>81.36±0.64</td><td>92.48±0.38</td><td>82.27±0.47</td><td>93.66±0.73</td><td>79.28±0.15</td><td>89.02±0.41</td><td>79.34±0.49</td><td>90.26±0.93</td></tr></tbody></table></div></div>
-</div></section>
-<section class="section" id="datasets"><div class="container balanced"><h2>Datasets</h2><ul class="dataset-list"><li><strong>Talk2Car:</strong> primary training and in-domain evaluation dataset.</li><li><strong>BDD-X:</strong> cross-domain retrieval and localization benchmark.</li><li><strong>KITTI:</strong> cross-domain localization benchmark.</li><li><strong>Udacity Self-Driving Car:</strong> cross-domain localization benchmark.</li></ul></div></section>
-<section class="section alt" id="bibtex"><div class="container balanced"><h2>BibTeX</h2><div class="bibtex-toolbar"><span>Cite this work</span><button id="copy-bibtex" type="button"><i class="fa-regular fa-copy"></i><span>Copy</span></button></div><pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026lahndriveclip,
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving." name="description"/>
+  <title>
+   LAHN-DriveCLIP | Iman Iraei
+  </title>
+  <link href="../favicon.png" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="style.css?v=3" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="hero">
+   <div class="hero-inner">
+    <a class="back-link" href="../">
+     <i class="fa-solid fa-arrow-left">
+     </i>
+     Iman Iraei
+    </a>
+    <h1>
+     LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving
+    </h1>
+    <div class="authors">
+     <a class="author-link" href="https://imaniraei.github.io/" rel="noopener" target="_blank">
+      Iman Iraei
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a class="author-link" href="https://www.concordia.ca/faculty/omair-ahmad.html" rel="noopener" target="_blank">
+      M. Omair Ahmad
+      <sup>
+       &dagger;
+      </sup>
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a class="author-link" href="https://www.concordia.ca/faculty/srikanta-swamy.html" rel="noopener" target="_blank">
+      M. N. S. Swamy
+      <sup>
+       &dagger;
+      </sup>
+     </a>
+    </div>
+    <div class="co-senior-note">
+     &dagger;Co-senior authors
+    </div>
+    <div class="affiliations">
+     <a href="https://www.concordia.ca/ginacody/electrical-computer-eng.html" rel="noopener" target="_blank">
+      Department of Electrical and Computer Engineering
+     </a>
+     <span>
+      &middot;
+     </span>
+     <a href="https://www.concordia.ca/" rel="noopener" target="_blank">
+      Concordia University
+     </a>
+    </div>
+    <div class="action-buttons">
+     <a class="pill" href="#" target="_blank">
+      <i class="fa-solid fa-file-lines">
+      </i>
+      <span>
+       Paper
+      </span>
+     </a>
+     <a class="pill" href="https://github.com/imaniraei" target="_blank">
+      <i class="fa-brands fa-github">
+      </i>
+      <span>
+       Code
+      </span>
+     </a>
+     <a class="pill" href="#datasets">
+      <i class="fa-solid fa-database">
+      </i>
+      <span>
+       Datasets
+      </span>
+     </a>
+     <button class="pill" data-scroll-target="bibtex" type="button">
+      <svg aria-hidden="true" class="bibtex-svg" viewbox="0 0 64 64">
+       <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.6">
+        <path d="M18 14 45 8l8 7-8 6-27 6-7-6z">
+        </path>
+        <path d="M11 21v11l7 6 27-6 8-6V15">
+        </path>
+        <path d="M18 38v11l7 6 26-7V37l-6-5">
+        </path>
+        <path d="M25 55 18 49">
+        </path>
+       </g>
+      </svg>
+      <span>
+       BibTeX
+      </span>
+     </button>
+    </div>
+    <p class="status">
+     Under Review at Robotics and Autonomous Systems
+    </p>
+   </div>
+  </header>
+  <main>
+   <section class="section">
+    <div class="container balanced">
+     <h2>
+      Overview
+     </h2>
+     <figure class="figure overview-figure">
+      <img alt="Overview of LAHN-DriveCLIP" src="assets/figure1_overview.png"/>
+      <figcaption>
+       Overview of the LAHN-DriveCLIP training pipeline. Frozen CLIP encoders are adapted with LoRA, while Gaussian CAM alignment and CAM-guided hard negative mining jointly improve localization and retrieval.
+      </figcaption>
+     </figure>
+    </div>
+   </section>
+   <section class="section alt" id="abstract">
+    <div class="container balanced">
+     <h2>
+      Abstract
+     </h2>
+     <p class="abstract-text">
+      Vision&ndash;language models such as CLIP have demonstrated strong zero-shot capabilities by aligning visual and textual representations, yet adapting these models for object localization in autonomous driving remains challenging due to limited annotated data and the lack of dense pixel-level supervision. In this paper, we propose LAHN-DriveCLIP, a localization-aware CLIP adaptation framework designed for weakly supervised vision&ndash;language localization in complex driving environments. Our approach leverages low-rank adaptation (LoRA) to efficiently fine-tune CLIP using annotated image&ndash;text pairs while keeping the pretrained vision and text encoders frozen. Localization is guided through class activation maps (CAMs) rather than direct bounding-box regression, where coarse bounding-box annotations are converted into Gaussian spatial targets and aligned with CAM responses during training. To further enhance discriminative localization, we introduce CAM-guided hard negative mining, which emphasizes challenging negative image&ndash;text pairs based on spatial activation inconsistencies. We train LAHN-DriveCLIP on the Talk2Car dataset using the standard training&ndash;evaluation split and further evaluate its generalization across multiple autonomous driving datasets. Experimental results demonstrate that the proposed method consistently improves both object localization and cross-modal retrieval accuracy compared with CLIP-based baselines, while preserving interpretable activation maps and strong vision&ndash;language alignment. These findings highlight the effectiveness of parameter-efficient, localization-aware adaptation for autonomous driving scenarios with weak, bounding box&ndash;level supervision.
+     </p>
+    </div>
+   </section>
+   <section class="section" id="method">
+    <div class="container balanced">
+     <h2>
+      Method
+     </h2>
+     <div class="method-points">
+      <p>
+       <strong>
+        LoRA-based CLIP adaptation.
+       </strong>
+       The pretrained CLIP vision and text encoders remain frozen, while low-rank adapters are inserted into selected attention projections. This preserves the pretrained cross-modal representation space and restricts learning to a compact set of trainable parameters.
+      </p>
+      <p>
+       <strong>
+        Gaussian CAM alignment for spatial grounding.
+       </strong>
+       gScoreCAM produces an activation map from the image&ndash;text similarity score. Bounding boxes are converted into smooth Gaussian heatmaps, and an L2 alignment loss encourages the activation map to concentrate around the referred object without requiring a box-regression head.
+      </p>
+      <p>
+       <strong>
+        CAM-guided hard negative mining.
+       </strong>
+       Negative samples are weighted according to the soft-IoU overlap between their activation maps. Spatially confusing negatives therefore receive larger contrastive weights, allowing the model to focus on semantically similar yet spatially misleading image&ndash;text pairs.
+      </p>
+      <p>
+       <strong>
+        Joint localization-aware objective.
+       </strong>
+       The final loss combines CAM-guided contrastive learning with Gaussian CAM alignment, while gradients are propagated exclusively through the LoRA parameters.
+      </p>
+     </div>
+     <div class="method-block">
+      <h3>
+       LoRA Adaptation of Transformer Projections
+      </h3>
+      <figure class="figure method-figure">
+       <img alt="Figure 2" src="assets/figure2_lora.png"/>
+       <figcaption>
+        Figure 2. Multi-head self-attention with LoRA adaptation applied to the query, key, value, and output projections.
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+   </section>
+   <section class="section alt" id="results">
+    <div class="container balanced">
+     <h2>
+      Results
+     </h2>
+     <p class="results-summary">
+      LAHN-DriveCLIP achieves the strongest cross-modal retrieval and localization performance among the evaluated CLIP-based methods. On Talk2Car, it reaches 92.48% Top-2 image-to-text retrieval and 93.66% Top-2 text-to-image retrieval. For localization, it obtains 61.93% EBPG, 57.74% IoU
+      <sub>
+       0.5
+      </sub>
+      , and 68.02% Point Accuracy. Cross-domain evaluations on BDD-X, KITTI, and Udacity further demonstrate robust generalization under distribution shift.
+     </p>
+     <h3 class="result-category-title">
+      Quantitative Results
+     </h3>
+     <div class="result-block">
+      <h3>
+       Cross-Modal Retrieval
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th rowspan="2">
+           Method
+          </th>
+          <th colspan="4">
+           Talk2Car
+          </th>
+          <th colspan="4">
+           BDD-X
+          </th>
+         </tr>
+         <tr>
+          <th>
+           I&rarr;T T1
+          </th>
+          <th>
+           I&rarr;T T2
+          </th>
+          <th>
+           T&rarr;I T1
+          </th>
+          <th>
+           T&rarr;I T2
+          </th>
+          <th>
+           I&rarr;T T1
+          </th>
+          <th>
+           I&rarr;T T2
+          </th>
+          <th>
+           T&rarr;I T1
+          </th>
+          <th>
+           T&rarr;I T2
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           CLIP
+          </td>
+          <td>
+           47.23&plusmn;0.42
+          </td>
+          <td>
+           58.91&plusmn;0.56
+          </td>
+          <td>
+           48.14&plusmn;0.66
+          </td>
+          <td>
+           57.62&plusmn;0.42
+          </td>
+          <td>
+           45.13&plusmn;0.72
+          </td>
+          <td>
+           55.88&plusmn;0.24
+          </td>
+          <td>
+           46.56&plusmn;0.49
+          </td>
+          <td>
+           56.30&plusmn;0.74
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP Surgery
+          </td>
+          <td>
+           78.42&plusmn;0.51
+          </td>
+          <td>
+           88.87&plusmn;0.43
+          </td>
+          <td>
+           78.76&plusmn;0.59
+          </td>
+          <td>
+           88.91&plusmn;0.48
+          </td>
+          <td>
+           77.91&plusmn;0.64
+          </td>
+          <td>
+           87.15&plusmn;0.38
+          </td>
+          <td>
+           78.08&plusmn;0.52
+          </td>
+          <td>
+           88.26&plusmn;0.46
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           LAHN-DriveCLIP
+          </td>
+          <td>
+           81.36&plusmn;0.64
+          </td>
+          <td>
+           92.48&plusmn;0.38
+          </td>
+          <td>
+           82.27&plusmn;0.47
+          </td>
+          <td>
+           93.66&plusmn;0.73
+          </td>
+          <td>
+           79.28&plusmn;0.15
+          </td>
+          <td>
+           89.02&plusmn;0.41
+          </td>
+          <td>
+           79.34&plusmn;0.49
+          </td>
+          <td>
+           90.26&plusmn;0.93
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Localization Performance
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Dataset
+          </th>
+          <th>
+           Method
+          </th>
+          <th>
+           EBPG &uarr;
+          </th>
+          <th>
+           IoU
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           Point Acc &uarr;
+          </th>
+          <th>
+           Params (M)
+          </th>
+          <th>
+           FLOPs (G)
+          </th>
+          <th>
+           Latency (ms)
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="3">
+           Talk2Car
+          </td>
+          <td>
+           CLIP
+          </td>
+          <td>
+           41.20&plusmn;5.12
+          </td>
+          <td>
+           28.45&plusmn;2.34
+          </td>
+          <td>
+           47.13&plusmn;6.21
+          </td>
+          <td>
+           304.3
+          </td>
+          <td>
+           188.6
+          </td>
+          <td>
+           24.1
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP Surgery
+          </td>
+          <td>
+           49.86&plusmn;4.21
+          </td>
+          <td>
+           39.74&plusmn;2.02
+          </td>
+          <td>
+           56.48&plusmn;5.03
+          </td>
+          <td>
+           304.7
+          </td>
+          <td>
+           191.2
+          </td>
+          <td>
+           26.8
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           LAHN-DriveCLIP
+          </td>
+          <td>
+           61.93&plusmn;3.58
+          </td>
+          <td>
+           57.74&plusmn;1.55
+          </td>
+          <td>
+           68.02&plusmn;4.11
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           BDD-X
+          </td>
+          <td>
+           CLIP
+          </td>
+          <td>
+           40.72&plusmn;5.03
+          </td>
+          <td>
+           26.94&plusmn;2.21
+          </td>
+          <td>
+           45.80&plusmn;6.02
+          </td>
+          <td>
+           304.7
+          </td>
+          <td>
+           188.6
+          </td>
+          <td>
+           24.1
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP Surgery
+          </td>
+          <td>
+           48.95&plusmn;4.10
+          </td>
+          <td>
+           36.88&plusmn;1.94
+          </td>
+          <td>
+           54.72&plusmn;4.88
+          </td>
+          <td>
+           304.3
+          </td>
+          <td>
+           191.2
+          </td>
+          <td>
+           26.8
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           LAHN-DriveCLIP
+          </td>
+          <td>
+           58.27&plusmn;3.41
+          </td>
+          <td>
+           49.82&plusmn;1.76
+          </td>
+          <td>
+           63.47&plusmn;4.03
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           KITTI
+          </td>
+          <td>
+           CLIP
+          </td>
+          <td>
+           38.45&plusmn;5.27
+          </td>
+          <td>
+           24.32&plusmn;2.35
+          </td>
+          <td>
+           43.18&plusmn;6.11
+          </td>
+          <td>
+           304.7
+          </td>
+          <td>
+           188.6
+          </td>
+          <td>
+           24.1
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP Surgery
+          </td>
+          <td>
+           46.73&plusmn;4.18
+          </td>
+          <td>
+           33.91&plusmn;2.01
+          </td>
+          <td>
+           52.07&plusmn;4.95
+          </td>
+          <td>
+           304.3
+          </td>
+          <td>
+           191.2
+          </td>
+          <td>
+           26.8
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           LAHN-DriveCLIP
+          </td>
+          <td>
+           55.12&plusmn;3.55
+          </td>
+          <td>
+           44.63&plusmn;1.83
+          </td>
+          <td>
+           60.42&plusmn;4.14
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           Udacity
+          </td>
+          <td>
+           CLIP
+          </td>
+          <td>
+           39.18&plusmn;5.14
+          </td>
+          <td>
+           25.87&plusmn;2.29
+          </td>
+          <td>
+           44.02&plusmn;6.07
+          </td>
+          <td>
+           304.7
+          </td>
+          <td>
+           188.6
+          </td>
+          <td>
+           24.1
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP Surgery
+          </td>
+          <td>
+           47.84&plusmn;4.16
+          </td>
+          <td>
+           35.96&plusmn;1.97
+          </td>
+          <td>
+           53.61&plusmn;4.91
+          </td>
+          <td>
+           304.3
+          </td>
+          <td>
+           191.2
+          </td>
+          <td>
+           26.8
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           LAHN-DriveCLIP
+          </td>
+          <td>
+           57.09&plusmn;3.49
+          </td>
+          <td>
+           47.38&plusmn;1.81
+          </td>
+          <td>
+           62.44&plusmn;4.09
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <h3 class="result-category-title">
+      Ablation Studies
+     </h3>
+     <div class="result-block">
+      <h3>
+       LoRA Rank and Placement Ablation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table ablation-table">
+        <thead>
+         <tr>
+          <th>
+           Backbone
+          </th>
+          <th>
+           Target
+          </th>
+          <th>
+           r
+          </th>
+          <th>
+           &alpha;
+          </th>
+          <th>
+           Params (M)
+          </th>
+          <th>
+           FLOPs (G)
+          </th>
+          <th>
+           Latency (ms)
+          </th>
+          <th>
+           IoU
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="8">
+           ViT-L/14
+          </td>
+          <td>
+           Q,V
+          </td>
+          <td>
+           4
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           299.56
+          </td>
+          <td>
+           188.8
+          </td>
+          <td>
+           24.2
+          </td>
+          <td>
+           50.07&plusmn;2.18
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           300.79
+          </td>
+          <td>
+           189.0
+          </td>
+          <td>
+           24.3
+          </td>
+          <td>
+           51.10&plusmn;3.69
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           303.13
+          </td>
+          <td>
+           189.4
+          </td>
+          <td>
+           24.4
+          </td>
+          <td>
+           55.83&plusmn;2.26
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           64
+          </td>
+          <td>
+           307.92
+          </td>
+          <td>
+           190.3
+          </td>
+          <td>
+           24.7
+          </td>
+          <td>
+           54.25&plusmn;1.75
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Q,K,V,O)
+          </td>
+          <td>
+           4
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           300.46
+          </td>
+          <td>
+           188.9
+          </td>
+          <td>
+           24.3
+          </td>
+          <td>
+           51.47&plusmn;1.84
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Q,K,V,O)
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           302.61
+          </td>
+          <td>
+           189.2
+          </td>
+          <td>
+           24.4
+          </td>
+          <td>
+           52.10&plusmn;2.62
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           All (Q,K,V,O)
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           306.80
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+          <td>
+           57.74&plusmn;1.55
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Q,K,V,O)
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           64
+          </td>
+          <td>
+           315.19
+          </td>
+          <td>
+           191.0
+          </td>
+          <td>
+           25.0
+          </td>
+          <td>
+           55.95&plusmn;2.89
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="8">
+           RN50
+          </td>
+          <td>
+           Q,V
+          </td>
+          <td>
+           4
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           103.41
+          </td>
+          <td>
+           67.73
+          </td>
+          <td>
+           11.4
+          </td>
+          <td>
+           46.05&plusmn;2.80
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           104.38
+          </td>
+          <td>
+           67.75
+          </td>
+          <td>
+           11.5
+          </td>
+          <td>
+           47.97&plusmn;3.25
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           106.15
+          </td>
+          <td>
+           67.78
+          </td>
+          <td>
+           11.7
+          </td>
+          <td>
+           50.85&plusmn;4.35
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Q,V
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           64
+          </td>
+          <td>
+           109.75
+          </td>
+          <td>
+           67.85
+          </td>
+          <td>
+           12.0
+          </td>
+          <td>
+           52.60&plusmn;2.05
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Conv+FC)
+          </td>
+          <td>
+           4
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           104.12
+          </td>
+          <td>
+           67.74
+          </td>
+          <td>
+           11.5
+          </td>
+          <td>
+           46.83&plusmn;2.05
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Conv+FC)
+          </td>
+          <td>
+           8
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           105.78
+          </td>
+          <td>
+           67.77
+          </td>
+          <td>
+           11.6
+          </td>
+          <td>
+           49.74&plusmn;2.72
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           All (Conv+FC)
+          </td>
+          <td>
+           16
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           108.98
+          </td>
+          <td>
+           67.82
+          </td>
+          <td>
+           11.8
+          </td>
+          <td>
+           53.90&plusmn;1.95
+          </td>
+         </tr>
+         <tr>
+          <td>
+           All (Conv+FC)
+          </td>
+          <td>
+           32
+          </td>
+          <td>
+           64
+          </td>
+          <td>
+           115.35
+          </td>
+          <td>
+           67.94
+          </td>
+          <td>
+           12.2
+          </td>
+          <td>
+           49.91&plusmn;2.10
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       LoRA Rank and Scaling Analysis
+      </h3>
+      <figure class="figure result-figure">
+       <img alt="Figure 3" src="assets/figure3_lora_curves.png"/>
+       <figcaption>
+        Figure 3. Localization accuracy during training under different LoRA rank and scaling configurations for ViT-L/14 and RN50.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block">
+      <h3>
+       Progressive Component Analysis
+      </h3>
+      <figure class="figure result-figure">
+       <img alt="Figure 4" src="assets/figure4_component_ablation.png"/>
+       <figcaption>
+        Figure 4. Localization accuracy improves progressively as LoRA, CAM alignment, and hard negative mining are introduced.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block">
+      <h3>
+       Average Localization Performance
+      </h3>
+      <figure class="figure result-figure">
+       <img alt="Figure 5" src="assets/figure5_average_localization.png"/>
+       <figcaption>
+        Figure 5. Average EBPG, IoU
+        <sub>
+         0.5
+        </sub>
+        , and Point Accuracy across four autonomous-driving datasets.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block">
+      <h3>
+       Progressive Retrieval Ablation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th rowspan="2">
+           Method
+          </th>
+          <th colspan="4">
+           Talk2Car
+          </th>
+          <th colspan="4">
+           BDD-X
+          </th>
+         </tr>
+         <tr>
+          <th>
+           I&rarr;T T1
+          </th>
+          <th>
+           I&rarr;T T2
+          </th>
+          <th>
+           T&rarr;I T1
+          </th>
+          <th>
+           T&rarr;I T2
+          </th>
+          <th>
+           I&rarr;T T1
+          </th>
+          <th>
+           I&rarr;T T2
+          </th>
+          <th>
+           T&rarr;I T1
+          </th>
+          <th>
+           T&rarr;I T2
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           CLIP+LoRA
+          </td>
+          <td>
+           73.48&plusmn;0.52
+          </td>
+          <td>
+           84.22&plusmn;0.70
+          </td>
+          <td>
+           74.91&plusmn;0.84
+          </td>
+          <td>
+           85.44&plusmn;0.23
+          </td>
+          <td>
+           60.18&plusmn;0.61
+          </td>
+          <td>
+           72.19&plusmn;0.93
+          </td>
+          <td>
+           61.45&plusmn;0.33
+          </td>
+          <td>
+           72.73&plusmn;0.59
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP+LoRA+CAM
+          </td>
+          <td>
+           79.64&plusmn;0.12
+          </td>
+          <td>
+           89.41&plusmn;0.35
+          </td>
+          <td>
+           80.01&plusmn;0.56
+          </td>
+          <td>
+           90.05&plusmn;0.38
+          </td>
+          <td>
+           77.52&plusmn;1.25
+          </td>
+          <td>
+           88.01&plusmn;0.41
+          </td>
+          <td>
+           78.16&plusmn;0.94
+          </td>
+          <td>
+           88.66&plusmn;1.05
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           CLIP+LoRA+CAM+HN
+          </td>
+          <td>
+           81.36&plusmn;0.64
+          </td>
+          <td>
+           92.48&plusmn;0.38
+          </td>
+          <td>
+           82.27&plusmn;0.47
+          </td>
+          <td>
+           93.66&plusmn;0.73
+          </td>
+          <td>
+           79.28&plusmn;0.15
+          </td>
+          <td>
+           89.02&plusmn;0.41
+          </td>
+          <td>
+           79.34&plusmn;0.49
+          </td>
+          <td>
+           90.26&plusmn;0.93
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       Component-Wise Localization Ablation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Dataset
+          </th>
+          <th>
+           Method
+          </th>
+          <th>
+           EBPG &uarr;
+          </th>
+          <th>
+           IoU
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           Point Acc &uarr;
+          </th>
+          <th>
+           Params (M)
+          </th>
+          <th>
+           FLOPs (G)
+          </th>
+          <th>
+           Latency (ms)
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="3">
+           Talk2Car
+          </td>
+          <td>
+           CLIP+LoRA
+          </td>
+          <td>
+           44.83&plusmn;4.83
+          </td>
+          <td>
+           32.07&plusmn;2.08
+          </td>
+          <td>
+           49.76&plusmn;5.47
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP+LoRA+CAM
+          </td>
+          <td>
+           59.27&plusmn;3.94
+          </td>
+          <td>
+           52.61&plusmn;1.87
+          </td>
+          <td>
+           64.15&plusmn;4.76
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           CLIP+LoRA+CAM+HN
+          </td>
+          <td>
+           61.93&plusmn;3.58
+          </td>
+          <td>
+           57.74&plusmn;1.55
+          </td>
+          <td>
+           68.02&plusmn;4.11
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           BDD-X
+          </td>
+          <td>
+           CLIP+LoRA
+          </td>
+          <td>
+           44.19&plusmn;4.71
+          </td>
+          <td>
+           31.08&plusmn;2.06
+          </td>
+          <td>
+           48.94&plusmn;5.36
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP+LoRA+CAM
+          </td>
+          <td>
+           55.84&plusmn;3.87
+          </td>
+          <td>
+           46.37&plusmn;1.92
+          </td>
+          <td>
+           60.15&plusmn;4.58
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           CLIP+LoRA+CAM+HN
+          </td>
+          <td>
+           58.27&plusmn;3.41
+          </td>
+          <td>
+           49.82&plusmn;1.76
+          </td>
+          <td>
+           63.47&plusmn;4.03
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           KITTI
+          </td>
+          <td>
+           CLIP+LoRA
+          </td>
+          <td>
+           42.03&plusmn;4.96
+          </td>
+          <td>
+           28.76&plusmn;2.04
+          </td>
+          <td>
+           46.95&plusmn;5.44
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP+LoRA+CAM
+          </td>
+          <td>
+           52.67&plusmn;3.92
+          </td>
+          <td>
+           41.25&plusmn;1.98
+          </td>
+          <td>
+           57.38&plusmn;4.69
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           CLIP+LoRA+CAM+HN
+          </td>
+          <td>
+           55.12&plusmn;3.55
+          </td>
+          <td>
+           44.63&plusmn;1.83
+          </td>
+          <td>
+           60.42&plusmn;4.14
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="3">
+           Udacity
+          </td>
+          <td>
+           CLIP+LoRA
+          </td>
+          <td>
+           43.56&plusmn;4.88
+          </td>
+          <td>
+           30.43&plusmn;2.01
+          </td>
+          <td>
+           47.58&plusmn;5.51
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td>
+           CLIP+LoRA+CAM
+          </td>
+          <td>
+           54.73&plusmn;3.96
+          </td>
+          <td>
+           44.12&plusmn;1.95
+          </td>
+          <td>
+           58.96&plusmn;4.63
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           CLIP+LoRA+CAM+HN
+          </td>
+          <td>
+           57.09&plusmn;3.49
+          </td>
+          <td>
+           47.38&plusmn;1.81
+          </td>
+          <td>
+           62.44&plusmn;4.09
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <div class="result-block">
+      <h3>
+       CAM Selection Ablation
+      </h3>
+      <div class="table-wrap">
+       <table class="results-table">
+        <thead>
+         <tr>
+          <th>
+           Dataset
+          </th>
+          <th>
+           CAM
+          </th>
+          <th>
+           EBPG &uarr;
+          </th>
+          <th>
+           IoU
+           <sub>
+            0.5
+           </sub>
+           &uarr;
+          </th>
+          <th>
+           Point Acc &uarr;
+          </th>
+          <th>
+           Params (M)
+          </th>
+          <th>
+           FLOPs (G)
+          </th>
+          <th>
+           Latency (ms)
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td rowspan="2">
+           Talk2Car
+          </td>
+          <td>
+           GradCAM
+          </td>
+          <td>
+           55.71&plusmn;4.07
+          </td>
+          <td>
+           46.62&plusmn;2.19
+          </td>
+          <td>
+           56.83&plusmn;4.97
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           177.4
+          </td>
+          <td>
+           19.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           gScoreCAM
+          </td>
+          <td>
+           61.93&plusmn;3.58
+          </td>
+          <td>
+           57.74&plusmn;1.55
+          </td>
+          <td>
+           68.02&plusmn;4.11
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           BDD-X
+          </td>
+          <td>
+           GradCAM
+          </td>
+          <td>
+           52.63&plusmn;4.12
+          </td>
+          <td>
+           38.95&plusmn;2.28
+          </td>
+          <td>
+           52.31&plusmn;4.89
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           177.4
+          </td>
+          <td>
+           19.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           gScoreCAM
+          </td>
+          <td>
+           58.27&plusmn;3.41
+          </td>
+          <td>
+           49.82&plusmn;1.76
+          </td>
+          <td>
+           63.47&plusmn;4.03
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           KITTI
+          </td>
+          <td>
+           GradCAM
+          </td>
+          <td>
+           50.31&plusmn;4.18
+          </td>
+          <td>
+           33.74&plusmn;2.22
+          </td>
+          <td>
+           49.93&plusmn;4.95
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           177.4
+          </td>
+          <td>
+           19.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           gScoreCAM
+          </td>
+          <td>
+           55.12&plusmn;3.55
+          </td>
+          <td>
+           44.63&plusmn;1.83
+          </td>
+          <td>
+           60.42&plusmn;4.14
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+         <tr>
+          <td rowspan="2">
+           Udacity
+          </td>
+          <td>
+           GradCAM
+          </td>
+          <td>
+           51.64&plusmn;4.15
+          </td>
+          <td>
+           36.52&plusmn;2.24
+          </td>
+          <td>
+           51.93&plusmn;4.92
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           177.4
+          </td>
+          <td>
+           19.6
+          </td>
+         </tr>
+         <tr class="ours">
+          <td>
+           gScoreCAM
+          </td>
+          <td>
+           57.09&plusmn;3.49
+          </td>
+          <td>
+           47.38&plusmn;1.81
+          </td>
+          <td>
+           62.44&plusmn;4.09
+          </td>
+          <td>
+           306.8
+          </td>
+          <td>
+           189.8
+          </td>
+          <td>
+           24.6
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+     <h3 class="result-category-title">
+      Qualitative Results
+     </h3>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       Talk2Car Qualitative Localization
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Figure 6: Qualitative localization comparison on Talk2Car" src="assets/figure6_qualitative.png"/>
+       <figcaption>
+        Figure 6. Qualitative comparison of localization heatmaps on Talk2Car. LAHN-DriveCLIP produces more concentrated and accurate object-level activations than the CLIP-based baselines.
+       </figcaption>
+      </figure>
+     </div>
+     <div class="result-block qualitative-result-block">
+      <h3>
+       BDD-X Qualitative Localization
+      </h3>
+      <figure class="figure qualitative-figure">
+       <img alt="Figure 7: Qualitative localization comparison on BDD-X" src="assets/figure7_qualitative.png"/>
+       <figcaption>
+        Figure 7. Qualitative comparison on BDD-X under diverse scenes and illumination conditions. The proposed method maintains focused localization under domain shift.
+       </figcaption>
+      </figure>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="datasets">
+    <div class="container balanced">
+     <h2>
+      Datasets
+     </h2>
+     <ul class="dataset-list">
+      <li>
+       <strong>
+        Talk2Car:
+       </strong>
+       primary training and in-domain evaluation dataset.
+      </li>
+      <li>
+       <strong>
+        BDD-X:
+       </strong>
+       cross-domain retrieval and localization benchmark.
+      </li>
+      <li>
+       <strong>
+        KITTI:
+       </strong>
+       cross-domain localization benchmark.
+      </li>
+      <li>
+       <strong>
+        Udacity Self-Driving Car:
+       </strong>
+       cross-domain localization benchmark.
+      </li>
+     </ul>
+    </div>
+   </section>
+   <section class="section alt" id="bibtex">
+    <div class="container balanced">
+     <h2>
+      BibTeX
+     </h2>
+     <div class="bibtex-toolbar">
+      <span>
+       Cite this work
+      </span>
+      <button id="copy-bibtex" type="button">
+       <i class="fa-regular fa-copy">
+       </i>
+       <span>
+        Copy
+       </span>
+      </button>
+     </div>
+     <pre class="bibtex-code"><code id="bibtex-text">@article{iraei2026lahndriveclip,
   title   = {LAHN-DriveCLIP: Localization-Aware CLIP Adaptation with CAM-Guided Hard Negative Mining for Autonomous Driving},
   author  = {Iraei, Iman and Ahmad, M. Omair and Swamy, M. N. S.},
   journal = {Submitted to Robotics and Autonomous Systems},
   year    = {2026}
-}</code></pre></div></section>
-</main>
-<footer><p>© 2026 Iman Iraei · <a href="../">Academic Homepage</a></p></footer>
-<script>
-document.querySelectorAll('[data-scroll-target]').forEach(button=>button.addEventListener('click',()=>document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({behavior:'smooth'})));
+}</code></pre>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <p>
+    &copy; 2026 Iman Iraei &middot;
+    <a href="../">
+     Academic Homepage
+    </a>
+   </p>
+  </footer>
+  <script>
+   document.querySelectorAll('[data-scroll-target]').forEach(button=>button.addEventListener('click',()=>document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({behavior:'smooth'})));
 const copyButton=document.getElementById('copy-bibtex');copyButton.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('bibtex-text').innerText);copyButton.innerHTML='<i class="fa-solid fa-check"></i><span>Copied</span>';setTimeout(()=>copyButton.innerHTML='<i class="fa-regular fa-copy"></i><span>Copy</span>',1600)}catch(e){copyButton.textContent='Copy failed'}});
-</script>
-</body></html>
+  </script>
+ </body>
+</html>
