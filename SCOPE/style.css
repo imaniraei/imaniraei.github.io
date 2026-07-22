@@ -988,4 +988,32 @@ figure,
     width: 100% !important;
     max-width: 100% !important;
   }
+
+
+
+
+
+/* ===== FINAL FIGURE SIZES ===== */
+
+.overview-figure{
+    max-width:1150px !important;
+    width:100% !important;
+}
+
+.method-figure{
+    max-width:620px !important;
+    width:100% !important;
+}
+
+.qualitative-figure{
+    max-width:1200px !important;
+    width:100% !important;
+}
+
+.figure img{
+    box-shadow:none !important;
+}
+
+
+  
 }
